@@ -6,7 +6,7 @@
 /*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 13:31:55 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/17 15:17:05 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/17 15:45:18 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ char		ft_show_error(void)
 {
 	ft_putstr("ERROR\n");
 	return (1);
+}
+
+void		ft_go_further(t_lem_in *input)
+{
+	if (INP_START == 0 || INP_END == 0 || INP_MATRIX == 0)
+		exit(ft_show_error());
 }
 
 void		ft_li_free_arr(char **arr, int i)
@@ -94,13 +100,19 @@ void		ft_li_comment(t_lem_in *input, char *line, int *j)
 	if (line[1] == '#')
 	{
 		if (*j > 10)
-			exit(ft_show_error());
+		{
+			free(line);
+			ft_go_further(input);
+		}
 		if (!ft_strcmp(&(line[2]), "start"))
 			*j = 1 << 15;
 		else if (!ft_strcmp(&(line[2]), "end"))
 			*j = 1 << 14;
 		else
-			exit(ft_show_error());
+		{
+			free(line);
+			ft_go_further(input);
+		}
 	}
 }
 
@@ -114,10 +126,12 @@ void		ft_li_start(t_lem_in *input, char *line, int *j)
 	i = 0;
 	while (arr[i])
 		i++;
-	if (i != 3)
-		exit(ft_show_error());
-	if (ft_num_isdigit(arr[1]) || ft_num_isdigit(arr[2]))
-		exit(ft_show_error());
+	if (i != 3 || ft_num_isdigit(arr[1]) || ft_num_isdigit(arr[2]))
+	{
+		free(line);
+		ft_li_free_arr(arr, i);
+		ft_go_further(input);
+	}
 	INP_NODES_NAMES[INP_NODE_C] = ft_strdup(arr[0]);
 	INP_NODES_XS[INP_NODE_C] = ft_strdup(arr[1]);
 	INP_NODES_YS[INP_NODE_C] = ft_strdup(arr[2]);
@@ -137,19 +151,18 @@ void		ft_li_end(t_lem_in *input, char *line, int *j)
 	i = 0;
 	while (arr[i])
 		i++;
-	if (i != 3)
-		exit(ft_show_error());
-	if (ft_num_isdigit(arr[1]) || ft_num_isdigit(arr[2]))
-		exit(ft_show_error());
+	if (i != 3 || ft_num_isdigit(arr[1]) || ft_num_isdigit(arr[2]))
+	{
+		free(line);
+		ft_li_free_arr(arr, i);
+		ft_go_further(input);
+	}
 	INP_NODES_NAMES[INP_NODE_C] = ft_strdup(arr[0]);
 	INP_NODES_XS[INP_NODE_C] = ft_strdup(arr[1]);
 	INP_NODES_YS[INP_NODE_C] = ft_strdup(arr[2]);
 	INP_END = INP_NODE_C;
 	INP_NODE_C++;
-	free(arr[2]);
-	free(arr[1]);
-	free(arr[0]);
-	free(arr);
+	ft_li_free_arr(arr, i);
 	*j = 1;
 }
 
@@ -161,7 +174,7 @@ void		ft_init_matrix(t_lem_in *input)
 
 	(INP_NODE_C == 0) ? exit(ft_show_error()) : 0;
 	arr = malloc(8 * INP_NODE_C);
-	(!arr) ? (ft_show_error_msg()) : 0;
+	(!arr) ? (exit(ft_show_error_msg())) : 0;
 	j = 0;
 	while (j < INP_NODE_C)
 	{
@@ -205,15 +218,21 @@ void		ft_add_tube(t_lem_in *input, char *line, int *j)
 
 	(INP_MATRIX == 0) ? ft_init_matrix(input) : 0;
 	arr = ft_strsplit(line, '-');
+	(!arr) ? (exit(ft_show_error_msg())) : 0;
 	while (arr[i])
 		i++;
-	(i != 2) ? exit(ft_show_error()) : 0;
+	if (i != 2)
+	{
+		ft_li_free_arr(arr, i);
+		ft_go_further(input);
+	}
 	first = ft_place_in_arr(input, arr[0]);
 	second = ft_place_in_arr(input, arr[1]);
 	if (first < 0 || second < 0)
 	{
 		*j = 11;
-		return ;	
+		ft_li_free_arr(arr, i);
+		return ;
 	}
 	INP_MATRIX[first][second] = '1';
 	INP_MATRIX[second][first] = '1';
@@ -236,9 +255,12 @@ void		ft_add_node(t_lem_in *input, char *line, int *j)
 		ft_add_tube(input, line, j);
 		return ;
 	}
-	(i != 3) ? exit(ft_show_error()) : 0;
-	if (ft_num_isdigit(arr[1]) || ft_num_isdigit(arr[2]))
-		exit(ft_show_error());
+	if (i != 3 || ft_num_isdigit(arr[1]) || ft_num_isdigit(arr[2]))
+	{
+		free(line);
+		ft_li_free_arr(arr, i);
+		ft_go_further(input);
+	}
 	INP_NODES_NAMES[INP_NODE_C] = ft_strdup(arr[0]);
 	INP_NODES_XS[INP_NODE_C] = ft_strdup(arr[1]);
 	INP_NODES_YS[INP_NODE_C] = ft_strdup(arr[2]);
@@ -246,7 +268,6 @@ void		ft_add_node(t_lem_in *input, char *line, int *j)
 	ft_li_free_arr(arr, i);
 	*j = 1;
 }
-
 
 //нужно ли проверять что поданы одинаковые узлы,
 // Нужно ли проверять что в тьюбах поданы существующие узлы
@@ -277,5 +298,6 @@ int			main(void)
 		ft_printf("%s\n", INP_MATRIX[i]);
 	}
 	(j) ? (free(line)) : 0;
+	ft_go_further(input);
 	return (1);
 }
