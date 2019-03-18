@@ -1,0 +1,129 @@
+1) если не вводить #tubes
+результат: программа не выходит по ошибкам, мапа не создается
+на моменте печати матрицы сега:
+
+/*
+./a.out
+0
+add count
+1 1 1
+ft_add_node
+7 7 7
+ft_add_node
+ctrl + D
+start = 1, end = 1
+node = 1
+node = 7
+zsh: segmentation fault  ./a.out
+*/
+
+2) если вводить ##start || ##end на 0-ой позиции
+результат: на моменте валидации программа вылетает по ошибке
+
+/*
+./a.out
+2  
+add count
+##start 
+1 1 1
+ft_li_start
+##end 
+2 2 2
+ft_li_end
+1-2
+ft_add_node
+ft_add_tube
+start = 1, end = 2
+node = 1
+node = 2
+01
+10
+ERROR
+*/
+
+возможное решение: при инициализации структуры start = -1 end = -1
+сравнивать изменились ли эти значения
+
+3) отсутствие муравьев input->ant_count = 0 || " "
+результат: программа не выдает сообщение об ошибке
+
+/*
+./a.out
+
+add count
+1 1 1
+ft_add_node
+##start
+2 2 2
+ft_li_start
+##end 
+3 3 3
+ft_li_end
+2-3
+ft_add_node
+ft_add_tube
+start = 2, end = 3
+node = 1
+node = 2
+node = 3
+test1
+000
+001
+010
+test2
+|2| |3| 
+|size = 2|
+|routes = 1|
+*/
+
+4) несуществующие #tubes - ?
+результат: программа отрабатывает нормально, но возможно есть неудачные случаи
+
+/*
+./a.out
+1
+add count
+1 1 1
+ft_add_node
+##start
+2 2 2
+ft_li_start
+##end 
+3 3 3
+ft_li_end
+2-3
+ft_add_node
+ft_add_tube
+3-4
+ft_add_tube
+5-6
+ft_add_tube
+start = 2, end = 3
+node = 1
+node = 2
+node = 3
+test1
+000
+001
+010
+test2
+|2| |3| 
+|size = 2|
+|routes = 1|
+*/
+
+5) ввод несуществующей команды вида ##st
+результат: выводит сообщение ERROR
+нужное поведение: игнорирование команды
+(
+	For example, ##start signals the ant farm’s entrance and ##end its exit.
+		Any unknown command will be ignored.
+)
+
+/*
+./a.out
+1
+add count
+##st
+ERROR
+*/
