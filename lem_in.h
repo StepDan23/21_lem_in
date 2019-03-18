@@ -6,7 +6,7 @@
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 13:32:31 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/18 12:53:38 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/18 13:14:10 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,5 @@ typedef struct	s_routes
 # define ROU_SIZES			(solved->route_size)
 # define ROU_COUN			(solved->routes_count)
 
+t_routes		*lem_routes(t_lem_in *input);
 #endif

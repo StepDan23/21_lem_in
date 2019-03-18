@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_li_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 13:31:55 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/17 15:45:18 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/18 16:14:25 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -277,6 +277,7 @@ int			main(void)
 	char		**arr;
 	t_lem_in	*input;
 	int			j;
+	t_routes	*solved;
 
 	j = 0;
 	input = ft_input_init();
@@ -293,11 +294,27 @@ int			main(void)
 	ft_printf("start = %s, end = %s\n", INP_NODES_NAMES[INP_START], INP_NODES_NAMES[INP_END]);
 	for (int i = 0; i < INP_NODE_C; i++)
 		ft_printf("node = %s\n", INP_NODES_NAMES[i]);
+	ft_printf("test1\n");
 	for (int i = 0; i < INP_NODE_C; i++)
 	{
 		ft_printf("%s\n", INP_MATRIX[i]);
 	}
+	ft_printf("test2\n");
 	(j) ? (free(line)) : 0;
 	ft_go_further(input);
+	solved = lem_routes(input);
+//print solution
+	int i = 0;
+	while (ROU_ARR[i])
+	{
+		j = 0;
+		while (ROU_ARR[i][j] != -1)
+			ft_printf("|%s| ", INP_NODES_NAMES[ROU_ARR[i][j++]]);
+		ft_putendl("");
+		ft_printf("|size = %d|\n", ROU_SIZES[i]);
+		i++;
+	}
+	ft_printf("|routes = %d|\n", ROU_COUN);
+//print solution
 	return (1);
 }

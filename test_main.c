@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   test_main.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 13:21:41 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/18 12:51:24 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/18 13:28:33 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,10 @@ int			main()
 	INP_MATRIX[7][1] = '1';
 
 //print matrix
-	// i = -1;
-	// while (++i < INP_NODE_C)
-	// 	ft_putendl(INP_MATRIX[i]);
-	// ft_putendl(0);
+	i = -1;
+	while (++i < INP_NODE_C)
+		ft_putendl(INP_MATRIX[i]);
+	ft_putendl(0);
 //print matrix
 	INP_START = 0;
 	INP_END = 7;
