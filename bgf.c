@@ -6,7 +6,7 @@
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 13:55:58 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/18 12:46:52 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/19 11:54:21 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ t_routes		*lem_routes(t_lem_in *input)
 	solved = (t_routes*)malloc(sizeof(t_routes));
 	ROU_ARR = (int**)malloc(sizeof(int*) * INP_NODE_C);
 	ROU_SIZES = lem_intnew(INP_NODE_C);
+	ROU_ANT_C = INP_ANT_C;
 	ROU_COUN = 0;
 	while (ROU_COUN < INP_NODE_C - 1)
 	{

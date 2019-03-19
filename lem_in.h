@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 13:32:31 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/19 11:37:18 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/19 11:53:34 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct		s_routes
 	int				**routes;
 	int				*route_size;
 	int				routes_count;
+	int				ant_count;
 }					t_routes;
 
 # define INP_ANT_C			(input->ant_count)
@@ -49,6 +50,7 @@ typedef struct		s_routes
 # define ROU_ARR			(solved->routes)
 # define ROU_SIZES			(solved->route_size)
 # define ROU_COUN			(solved->routes_count)
+# define ROU_ANT_C			(solved->ant_count)
 
 char			ft_show_error_msg(void);
 char			ft_show_error(void);
