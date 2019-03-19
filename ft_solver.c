@@ -6,7 +6,7 @@
 /*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 21:34:27 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/19 12:29:45 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/19 12:33:10 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,5 @@ void		ft_go_further(t_lem_in *input)
 	solved = lem_routes(input);
 	if (ROU_COUN <= 0)
 		exit(ft_show_error_msg());
+	ft_route_all_ants(solved);
 }

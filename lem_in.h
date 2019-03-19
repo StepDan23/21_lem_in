@@ -6,7 +6,7 @@
 /*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 13:32:31 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/19 12:29:53 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/19 12:33:50 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,6 @@ int				ft_num_isdigit(char *num);
 t_lem_in		*ft_input_init(void);
 
 t_routes		*lem_routes(t_lem_in *input);
+void			ft_route_all_ants(t_routes *solved);
+
 #endif
