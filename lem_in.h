@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 13:32:31 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/18 13:14:10 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/19 11:37:18 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,25 @@
 # include "libft.h"
 # include <stdlib.h>
 
-typedef struct	s_lem_in
+typedef struct		s_lem_in
 {
-	int		ant_count;
-	int		start;
-	int		end;
-	char	***nodes;
-	int		node_count;
-	char	**matrix_adjacencies;
-	int		flag;
-}				t_lem_in;
+	int				ant_count;
+	int				start;
+	int				end;
+	char			***nodes;
+	int				node_count;
+	char			**matrix_adjacencies;
+	int				flag;
+}					t_lem_in;
 
-typedef struct	s_routes
+//после построения маршрутов в структуре инпут нужен только ant_count и flags
+// может стоит их добавить во вторую структуру?
+typedef struct		s_routes
 {
-	int		**routes;
-	int		*route_size;
-	int		routes_count;
-}				t_routes;
+	int				**routes;
+	int				*route_size;
+	int				routes_count;
+}					t_routes;
 
 # define INP_ANT_C			(input->ant_count)
 # define INP_START			(input->start)
@@ -47,6 +49,21 @@ typedef struct	s_routes
 # define ROU_ARR			(solved->routes)
 # define ROU_SIZES			(solved->route_size)
 # define ROU_COUN			(solved->routes_count)
+
+char			ft_show_error_msg(void);
+char			ft_show_error(void);
+void			ft_go_further(t_lem_in *input);
+void			ft_li_free_arr(char **arr, int i);
+void			ft_ant_count(t_lem_in *input, char *line, int *j);
+void			ft_li_comment(t_lem_in *input, char *line, int *j);
+void			ft_li_start(t_lem_in *input, char *line, int *j);
+void			ft_li_end(t_lem_in *input, char *line, int *j);
+void			ft_init_matrix(t_lem_in *input);
+void			ft_add_tube(t_lem_in *input, char *line, int *j);
+void			ft_add_node(t_lem_in *input, char *line, int *j);
+int				ft_place_node_in_arr(t_lem_in *input, char *str);
+int				ft_num_isdigit(char *num);
+t_lem_in		*ft_input_init(void);
 
 t_routes		*lem_routes(t_lem_in *input);
 #endif
