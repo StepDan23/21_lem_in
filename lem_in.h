@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 13:32:31 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/19 12:05:56 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/19 12:12:58 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct		s_routes
 	int				*route_size;
 	int				routes_count;
 	int				ant_count;
-	int				*num_of_ants
+	int				*num_of_ants;
 }					t_routes;
 
 # define INP_ANT_C			(input->ant_count)

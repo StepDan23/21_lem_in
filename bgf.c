@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bgf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 13:55:58 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/19 12:06:49 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/19 12:17:25 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,16 +124,28 @@ void			lem_del_node(t_lem_in *input, int *route)
 	}
 }
 
+t_routes		*rou_init(t_lem_in *input)
+{
+	t_routes	*solved;
+
+	if	(!(solved = (t_routes*)malloc(sizeof(t_routes))))
+		return (NULL);
+	ROU_ARR = (int**)malloc(sizeof(int*) * INP_NODE_C);
+	ROU_SIZES = lem_intnew(INP_NODE_C);
+	if (!ROU_ARR || !ROU_SIZES)
+		return (NULL);
+	ROU_ANT_C = INP_ANT_C;
+	ROU_COUN = 0;
+	return (solved);
+}
+
 t_routes		*lem_routes(t_lem_in *input)
 {
 	t_routes	*solved;
 	int			*bgf;
 
-	solved = (t_routes*)malloc(sizeof(t_routes));
-	ROU_ARR = (int**)malloc(sizeof(int*) * INP_NODE_C);
-	ROU_SIZES = lem_intnew(INP_NODE_C);
-	ROU_ANT_C = INP_ANT_C;
-	ROU_COUN = 0;
+	if (!(solved = rou_init(input)))
+		return (NULL);
 	while (ROU_COUN < INP_NODE_C - 1)
 	{
 		bgf = lem_bgf(input);
