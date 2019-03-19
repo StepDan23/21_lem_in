@@ -6,7 +6,7 @@
 /*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 13:31:55 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/19 10:52:36 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/19 12:03:34 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void		ft_add_tube(t_lem_in *input, char *line, int *j)
 	if (i != 2)
 	{
 		ft_li_free_arr(arr, i);
-		ft_printf("ERROR IN ft_add_tube\n");
 		ft_go_further(input);
 	}
 	first = ft_place_node_in_arr(input, arr[0]);
@@ -89,7 +88,6 @@ void		ft_add_tube(t_lem_in *input, char *line, int *j)
 int			main(void)
 {
 	char		*line;
-	char		**arr;
 	t_lem_in	*input;
 	int			j;
 	t_routes	*solved;
@@ -111,29 +109,7 @@ int			main(void)
 	ft_printf("start = %s, end = %s\n", INP_NODES_NAMES[INP_START], INP_NODES_NAMES[INP_END]);
 	for (int i = 0; i < INP_NODE_C; i++)
 		ft_printf("node = %s\n", INP_NODES_NAMES[i]);
-	//ft_printf("test1\n");
-	//for (int i = 0; i < INP_NODE_C; i++)
-	//{
-	//	ft_printf("%s\n", INP_MATRIX[i]);
-	//}
-	//ft_printf("test2\n");
 	(j) ? (free(line)) : 0;
 	ft_go_further(input);
-	/*
-solved = lem_routes(input);
-//print solution
-	int i = 0;
-	while (ROU_ARR[i])
-	{
-		j = 0;
-		while (ROU_ARR[i][j] != -1)
-			ft_printf("|%s| ", INP_NODES_NAMES[ROU_ARR[i][j++]]);
-		ft_putendl("");
-		ft_printf("|size = %d|\n", ROU_SIZES[i]);
-		i++;
-	}
-	ft_printf("|routes = %d|\n", ROU_COUN);
-//print solution
-*/
 	return (1);
 }
