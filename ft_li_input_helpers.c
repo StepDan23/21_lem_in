@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_li_input_helpers.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 21:13:34 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/20 18:24:57 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/20 18:56:36 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ t_lem_in	*ft_input_init(void)
 
 int			ft_num_isdigit(char *num)
 {
-	int	i;
+	int			i;
+	long long	temp;
 
 	i = 0;
 	while (num[i] == ' ' || num[i] == '\t')
@@ -74,5 +75,8 @@ int			ft_num_isdigit(char *num)
 			return (1);
 		i++;
 	}
+	temp = ft_atol(num);
+	if (temp < -2147483648 || temp > 2147483647)
+		return (1);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_li_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 13:31:55 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/20 18:30:51 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/20 18:44:14 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ void		ft_init_matrix(t_lem_in *input)
 
 void		ft_add_tube(t_lem_in *input, char *line, int *j)
 {
-	ft_printf("ft_add_tube\n");
 	char	**arr;
 	int		i;
 	int		first;
 	int		second;
+	ft_printf("ft_add_tube\n");
 
 	i = 0;
 	(INP_MATRIX == 0) ? ft_init_matrix(input) : 0;
@@ -76,14 +76,11 @@ void		ft_add_tube(t_lem_in *input, char *line, int *j)
 	first = ft_place_node_in_arr(input, arr[0]);
 	second = ft_place_node_in_arr(input, arr[1]);
 	*j = 11;
+	ft_li_free_arr(arr, i);
 	if (first < 0 || second < 0)
-	{
-		ft_li_free_arr(arr, i);
 		return ;
-	}
 	INP_MATRIX[first][second] = '1';
 	INP_MATRIX[second][first] = '1';
-	ft_li_free_arr(arr, i);
 }
 
 int			main(void)
@@ -97,7 +94,7 @@ int			main(void)
 	while (get_next_line(0, &line) > 0)
 	{
 		(line[0] != '#' && j >= 10 && j <= 20) ? (ft_add_tube(input, line, &j)) : 0;
-		(line[0] != '#' && j > 0 && j < 10) ? (ft_add_node(input, line, &j)) : 0;
+		(line[0] != '#' && j > 0 && j < 10) ? (ft_add_node(input, line, &j, 0)) : 0;
 		(j == 0) ? (ft_ant_count(input, line, &j)) : 0;
 		(j & (1 << 14)) ? (ft_li_end(input, line, &j)) : 0;
 		(j & (1 << 15)) ? (ft_li_start(input, line, &j)) : 0;
@@ -110,5 +107,5 @@ int			main(void)
 		ft_printf("node = %s\n", INP_NODES_NAMES[i]);
 	(j) ? (free(line)) : 0;
 	ft_go_further(input);
-	return (1);
+	return (0);
 }

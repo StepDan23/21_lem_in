@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_input_parsing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 21:15:17 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/20 18:29:44 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/20 19:13:49 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,10 @@ void		ft_li_start(t_lem_in *input, char *line, int *j)
 	while (arr[i])
 		i++;
 	if (i != 3 || ft_num_isdigit(arr[1]) || ft_num_isdigit(arr[2]) ||\
-	arr[0][0] == 'L')
+	arr[0][0] == 'L' || ft_place_node_in_arr(input, arr[0]) >= 0)
 	{
 		free(line);
 		ft_li_free_arr(arr, i);
-		ft_printf("ERROR IN ft_li_start\n");
 		ft_go_further(input);
 	}
 	INP_NODES_NAMES[INP_NODE_C] = ft_strdup(arr[0]);
@@ -83,11 +82,10 @@ void		ft_li_end(t_lem_in *input, char *line, int *j)
 	while (arr[i])
 		i++;
 	if (i != 3 || ft_num_isdigit(arr[1]) || ft_num_isdigit(arr[2]) ||\
-	arr[0][0] == 'L')
+	arr[0][0] == 'L' || ft_place_node_in_arr(input, arr[0]) >= 0)
 	{
 		free(line);
 		ft_li_free_arr(arr, i);
-		ft_printf("ERROR IN ft_li_end\n");
 		ft_go_further(input);
 	}
 	INP_NODES_NAMES[INP_NODE_C] = ft_strdup(arr[0]);
@@ -99,12 +97,10 @@ void		ft_li_end(t_lem_in *input, char *line, int *j)
 	*j = 1;
 }
 
-void		ft_add_node(t_lem_in *input, char *line, int *j)
+void		ft_add_node(t_lem_in *input, char *line, int *j, int i)
 {
 	char	**arr;
-	int		i;
 
-	i = 0;
 	ft_printf("ft_add_node\n");
 	arr = ft_strsplit(line, ' ');
 	while (arr[i])
@@ -116,7 +112,7 @@ void		ft_add_node(t_lem_in *input, char *line, int *j)
 		return ;
 	}
 	if (i != 3 || ft_num_isdigit(arr[1]) || ft_num_isdigit(arr[2]) ||\
-	arr[0][0] == 'L')
+	arr[0][0] == 'L' || ft_place_node_in_arr(input, arr[0]) >= 0)
 	{
 		free(line);
 		ft_li_free_arr(arr, i);

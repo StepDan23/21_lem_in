@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 13:32:31 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/19 19:28:51 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/20 18:44:11 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void				ft_li_start(t_lem_in *input, char *line, int *j);
 void				ft_li_end(t_lem_in *input, char *line, int *j);
 void				ft_init_matrix(t_lem_in *input);
 void				ft_add_tube(t_lem_in *input, char *line, int *j);
-void				ft_add_node(t_lem_in *input, char *line, int *j);
+void				ft_add_node(t_lem_in *input, char *line, int *j, int i);
 int					ft_place_node_in_arr(t_lem_in *input, char *str);
 int					ft_num_isdigit(char *num);
 t_lem_in			*ft_input_init(void);
