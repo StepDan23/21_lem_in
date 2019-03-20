@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_input_parsing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 21:15:17 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/19 10:49:42 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/20 18:29:44 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void		ft_add_node(t_lem_in *input, char *line, int *j)
 	char	**arr;
 	int		i;
 
+	i = 0;
 	ft_printf("ft_add_node\n");
 	arr = ft_strsplit(line, ' ');
 	while (arr[i])

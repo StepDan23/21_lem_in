@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_li_input_helpers.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 21:13:34 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/19 10:46:11 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/20 18:24:57 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 char		ft_show_error_msg(void)
 {
-	ft_putstr("Some error oqqured\n");
+	ft_putstr_fd("Some error oqqured\n", 2);
 	return (1);
 }
 
 char		ft_show_error(void)
 {
-	ft_putstr("ERROR\n");
+	ft_putstr_fd("ERROR\n", 2);
 	return (1);
 }
 

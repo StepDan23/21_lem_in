@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_li_input.c                                      :+:      :+:    :+:   */
+/*   ft_li_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 13:31:55 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/19 12:03:34 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/20 18:30:51 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void		ft_add_tube(t_lem_in *input, char *line, int *j)
 	int		first;
 	int		second;
 
+	i = 0;
 	(INP_MATRIX == 0) ? ft_init_matrix(input) : 0;
 	(!(arr = ft_strsplit(line, '-'))) ? (exit(ft_show_error_msg())) : 0;
 	while (arr[i])
@@ -90,20 +91,18 @@ int			main(void)
 	char		*line;
 	t_lem_in	*input;
 	int			j;
-	t_routes	*solved;
 
 	j = 0;
 	input = ft_input_init();
 	while (get_next_line(0, &line) > 0)
 	{
-		ft_putstr(line);
-		write(1, "\n", 1);
 		(line[0] != '#' && j >= 10 && j <= 20) ? (ft_add_tube(input, line, &j)) : 0;
 		(line[0] != '#' && j > 0 && j < 10) ? (ft_add_node(input, line, &j)) : 0;
 		(j == 0) ? (ft_ant_count(input, line, &j)) : 0;
 		(j & (1 << 14)) ? (ft_li_end(input, line, &j)) : 0;
 		(j & (1 << 15)) ? (ft_li_start(input, line, &j)) : 0;
 		(line[0] == '#' && j >= 0 && j < 10) ? (ft_li_comment(input, line, &j)) : 0;
+		ft_putendl(line);
 		free(line);
 	}
 	ft_printf("start = %s, end = %s\n", INP_NODES_NAMES[INP_START], INP_NODES_NAMES[INP_END]);

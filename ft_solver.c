@@ -6,7 +6,7 @@
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 21:34:27 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/20 13:54:36 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/20 18:27:11 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ void		ft_go_further(t_lem_in *input)
 	free(ROU_SIZES);
 	free(solved);
 //free
+	exit(0);
 	// ft_route_all_ants(solved);
 }
