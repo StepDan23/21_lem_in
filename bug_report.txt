@@ -149,3 +149,45 @@ ERROR
 /* ************************************************************************** */
 add count
 ERROR
+
+7)вместо нода вводим enter gnl = ""
+возможно решение: ft_add_node - итератор i изначально не обнулен
+ft_add_tube такая же история
+e1r5p3% ./a.out 
+1
+1
+add count
+
+
+ft_add_node
+a.out(77875,0x7fffb194f3c0) malloc: *** error for object 0xa000000000000000: pointer being freed was not allocated
+*** set a breakpoint in malloc_error_break to debug
+zsh: abort      ./a.out
+
+8) ft_add_tube при ошибке идет в ft_go_further выходит из него и ловит сегу
+так как я чищу input
+возможное решение: return ; не помогает, возможно прерывание если ввели 2 entera?
+e1r5p3% ./a.out
+1
+1
+add count
+##start
+##start
+1 1 1
+1 1 1
+ft_li_start
+##end
+##end
+2 2 2
+2 2 2
+ft_li_end
+1-2
+1-2
+ft_add_node
+ft_add_tube
+
+
+ft_add_tube
+|nodes = 2|
+2
+zsh: segmentation fault  ./a.out
