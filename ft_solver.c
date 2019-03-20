@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_solver.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 21:34:27 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/20 18:27:11 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/20 21:11:29 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,44 +15,28 @@
 
 void		ft_go_further(t_lem_in *input)
 {
-	t_routes *solved;
+	t_routes	*solved;
+	int			i;
 
 	if (INP_START == -1 || INP_END == -1 || INP_MATRIX == 0)
 	{
 		free(input);
-		ft_printf("ERROR IN ft_go_further\n");
 		exit(ft_show_error());
 	}
 	solved = lem_routes(input);
 	if ((!solved) || ROU_COUN <= 0)
 		exit(ft_show_error_msg());
-//Print
 	ft_printf("|routes = %d|\n", ROU_COUN);
-	int i;
-	int j;
 	i = 0;
 	while (i < ROU_COUN)
-	{
-		j = 0;
-		ft_printf("|size = %d|\n", ROU_SIZES[i]);
-		while (j < ROU_SIZES[i])
-			ft_printf("|%s| ", ROU_ARR[i][j++]);
-		i++;
-		ft_putendl("");
-	}
-	
-//Print
-//free t_routes
-	i = 0;
-	while (i < ROU_COUN)
-	{
+		ft_printf("| %d ", ROU_SIZES[i++]);
+	ft_putstr("|\n");
+	ft_route_all_ants(solved, -1);
+	i = -1;
+	while (++i < ROU_COUN)
 		ft_li_free_arr(ROU_ARR[i], ROU_SIZES[i]);
-		i++;
-	}
 	free(ROU_ARR);
 	free(ROU_SIZES);
 	free(solved);
-//free
 	exit(0);
-	// ft_route_all_ants(solved);
 }

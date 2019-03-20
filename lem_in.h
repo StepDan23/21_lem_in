@@ -6,7 +6,7 @@
 /*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 13:32:31 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/20 18:44:11 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/20 21:27:01 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct		s_routes
 	int				routes_count;
 	int				ant_count;
 	int				*num_of_ants;
+	int				num_of_ways;
 }					t_routes;
 
 # define INP_ANT_C			(input->ant_count)
@@ -53,6 +54,7 @@ typedef struct		s_routes
 # define ROU_COUN			(solved->routes_count)
 # define ROU_ANT_C			(solved->ant_count)
 # define ROU_ANT_NUM		(solved->num_of_ants)
+# define ROU_NUM_WAYS		(solved->num_of_ways)
 
 char				ft_show_error_msg(void);
 char				ft_show_error(void);
@@ -79,6 +81,6 @@ void				lem_free_tlem(t_lem_in *input);
 ** ft_li_routes.c
 */
 t_routes			*lem_routes(t_lem_in *input);
-void				ft_route_all_ants(t_routes *solved);
+void				ft_route_all_ants(t_routes *solved, int i);
 
 #endif
