@@ -26,9 +26,9 @@ int main(void)
 	};
 	int	ways_count = 2;
 	int	len[] = {6, 6};
-	int	ant_start[] = {9, 9};
+	int	ant_start[] = {9, 5};
 	int	ant_finished[] = {0, 0};
-	int	ant_left[] = {9, 9};
+	int	ant_left[] = {9, 5};
 	int	num_of_ant_in_tube = 1;
 	int	k;
 	int	i;
@@ -66,7 +66,7 @@ int main(void)
 			}
 		}
 		k = (k + 1) % ways_count;
-		(k == 0) ? putchar('\n') : 0;
+		(k == 0 && j[ways_count - 1] > 1) ? putchar('\n') : 0;
 	}
 	return (0);
 }
