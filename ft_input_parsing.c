@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_input_parsing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: how_r_u <how_r_u@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 21:15:17 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/20 19:13:49 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/22 22:53:31 by how_r_u          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void		ft_ant_count(t_lem_in *input, char *line, int *j)
 {
 	int		res;
 
-	ft_printf("add count\n");
 	if (ft_num_isdigit(line))
 		exit(ft_show_error());
 	res = ft_atoi(line);
@@ -35,7 +34,6 @@ void		ft_li_comment(t_lem_in *input, char *line, int *j)
 		if (*j > 10)
 		{
 			free(line);
-			ft_printf("ERROR IN ft_li_comment\n");
 			ft_go_further(input);
 		}
 		if (!ft_strcmp(&(line[2]), "start"))
@@ -50,7 +48,6 @@ void		ft_li_start(t_lem_in *input, char *line, int *j)
 	char	**arr;
 	int		i;
 
-	ft_printf("ft_li_start\n");
 	arr = ft_strsplit(line, ' ');
 	i = 0;
 	while (arr[i])
@@ -76,7 +73,6 @@ void		ft_li_end(t_lem_in *input, char *line, int *j)
 	char	**arr;
 	int		i;
 
-	ft_printf("ft_li_end\n");
 	arr = ft_strsplit(line, ' ');
 	i = 0;
 	while (arr[i])
@@ -101,7 +97,6 @@ void		ft_add_node(t_lem_in *input, char *line, int *j, int i)
 {
 	char	**arr;
 
-	ft_printf("ft_add_node\n");
 	arr = ft_strsplit(line, ' ');
 	while (arr[i])
 		i++;

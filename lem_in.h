@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: how_r_u <how_r_u@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 13:32:31 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/20 21:27:01 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/22 23:13:53 by how_r_u          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,15 @@ typedef struct		s_routes
 	int				ant_count;
 	int				*num_of_ants;
 	int				num_of_ways;
+	int				*num_finished;
+	int				*num_left;
+	int				*ant_offset;
 }					t_routes;
+
+/*
+** ROU_NUM_WAYS - количество активных путей (количество путей в котороых кол-во муравьев больше 0)
+** ROU_ANT_NUM - Количество муравьев на каждом из путей
+*/
 
 # define INP_ANT_C			(input->ant_count)
 # define INP_START			(input->start)
@@ -55,21 +63,24 @@ typedef struct		s_routes
 # define ROU_ANT_C			(solved->ant_count)
 # define ROU_ANT_NUM		(solved->num_of_ants)
 # define ROU_NUM_WAYS		(solved->num_of_ways)
+# define ROU_ANT_FIN		(solved->num_finished)
+# define ROU_ANT_LEFT		(solved->num_left)
+# define ROU_ANT_OFFSET		(solved->ant_offset)
 
-char				ft_show_error_msg(void);
-char				ft_show_error(void);
-void				ft_go_further(t_lem_in *input);
-void				ft_li_free_arr(char **arr, int i);
-void				ft_ant_count(t_lem_in *input, char *line, int *j);
-void				ft_li_comment(t_lem_in *input, char *line, int *j);
-void				ft_li_start(t_lem_in *input, char *line, int *j);
-void				ft_li_end(t_lem_in *input, char *line, int *j);
-void				ft_init_matrix(t_lem_in *input);
-void				ft_add_tube(t_lem_in *input, char *line, int *j);
-void				ft_add_node(t_lem_in *input, char *line, int *j, int i);
-int					ft_place_node_in_arr(t_lem_in *input, char *str);
-int					ft_num_isdigit(char *num);
-t_lem_in			*ft_input_init(void);
+char					ft_show_error_msg(void);
+char					ft_show_error(void);
+void					ft_go_further(t_lem_in *input);
+void					ft_li_free_arr(char **arr, int i);
+void					ft_ant_count(t_lem_in *input, char *line, int *j);
+void					ft_li_comment(t_lem_in *input, char *line, int *j);
+void					ft_li_start(t_lem_in *input, char *line, int *j);
+void					ft_li_end(t_lem_in *input, char *line, int *j);
+void					ft_init_matrix(t_lem_in *input);
+void					ft_add_tube(t_lem_in *input, char *line, int *j);
+void					ft_add_node(t_lem_in *input, char *line, int *j, int i);
+int						ft_place_node_in_arr(t_lem_in *input, char *str);
+int						ft_num_isdigit(char *num);
+t_lem_in				*ft_input_init(void);
 /*
 ** ft_li_routes_helpers.c
 */

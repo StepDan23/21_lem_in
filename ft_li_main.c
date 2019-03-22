@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_li_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: how_r_u <how_r_u@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 13:31:55 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/20 18:44:14 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/23 00:18:25 by how_r_u          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void		ft_add_tube(t_lem_in *input, char *line, int *j)
 	int		i;
 	int		first;
 	int		second;
-	ft_printf("ft_add_tube\n");
 
 	i = 0;
 	(INP_MATRIX == 0) ? ft_init_matrix(input) : 0;
@@ -102,9 +101,9 @@ int			main(void)
 		ft_putendl(line);
 		free(line);
 	}
-	ft_printf("start = %s, end = %s\n", INP_NODES_NAMES[INP_START], INP_NODES_NAMES[INP_END]);
-	for (int i = 0; i < INP_NODE_C; i++)
-		ft_printf("node = %s\n", INP_NODES_NAMES[i]);
+	//ft_printf("start = %s, end = %s\n", INP_NODES_NAMES[INP_START], INP_NODES_NAMES[INP_END]);
+	//for (int i = 0; i < INP_NODE_C; i++)
+	//	ft_printf("node = %s\n", INP_NODES_NAMES[i]);
 	(j) ? (free(line)) : 0;
 	ft_go_further(input);
 	return (0);
