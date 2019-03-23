@@ -6,7 +6,7 @@
 /*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/23 13:28:05 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/23 13:28:06 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/23 17:23:55 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void		ft_add_node(t_lem_in *input, char *line, int *j, int i)
 {
 	char	**arr;
 
+	(INP_NODE_C == 9998) ? (exit(ft_show_error())) : 0;
 	arr = ft_strsplit(line, ' ');
 	while (arr[i])
 		i++;

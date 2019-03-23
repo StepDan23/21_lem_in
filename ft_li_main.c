@@ -6,7 +6,7 @@
 /*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 13:31:55 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/23 13:09:56 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/23 16:15:20 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+/*
+** Проверяем, встречался ли узел с таким именем ранее
+*/
 int			ft_place_node_in_arr(t_lem_in *input, char *str)
 {
 	int	i;
