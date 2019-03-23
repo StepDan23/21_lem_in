@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_li_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: how_r_u <how_r_u@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 13:31:55 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/23 00:18:25 by how_r_u          ###   ########.fr       */
+/*   Updated: 2019/03/23 13:09:56 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,18 +92,18 @@ int			main(void)
 	input = ft_input_init();
 	while (get_next_line(0, &line) > 0)
 	{
-		(line[0] != '#' && j >= 10 && j <= 20) ? (ft_add_tube(input, line, &j)) : 0;
-		(line[0] != '#' && j > 0 && j < 10) ? (ft_add_node(input, line, &j, 0)) : 0;
+		(line[0] != '#' && j >= 10 && j <= 20) ? (ft_add_tube(input, line, &j))\
+		: 0;
+		(line[0] != '#' && j > 0 && j < 10) ? (ft_add_node(input, line, &j, 0))\
+		: 0;
 		(j == 0) ? (ft_ant_count(input, line, &j)) : 0;
 		(j & (1 << 14)) ? (ft_li_end(input, line, &j)) : 0;
 		(j & (1 << 15)) ? (ft_li_start(input, line, &j)) : 0;
-		(line[0] == '#' && j >= 0 && j < 10) ? (ft_li_comment(input, line, &j)) : 0;
+		(line[0] == '#' && j >= 0 && j < 10) ? (ft_li_comment(input, line, &j))\
+		: 0;
 		ft_putendl(line);
 		free(line);
 	}
-	//ft_printf("start = %s, end = %s\n", INP_NODES_NAMES[INP_START], INP_NODES_NAMES[INP_END]);
-	//for (int i = 0; i < INP_NODE_C; i++)
-	//	ft_printf("node = %s\n", INP_NODES_NAMES[i]);
 	(j) ? (free(line)) : 0;
 	ft_go_further(input);
 	return (0);

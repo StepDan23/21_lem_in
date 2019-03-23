@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_li_routes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 13:55:58 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/19 19:18:56 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/23 13:26:53 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,19 +83,14 @@ static int		*lem_make_route(t_lem_in *input, int *bgf)
 	return (route);
 }
 
-static int		*lem_bgf(t_lem_in *input)
+static int		*lem_bgf(t_lem_in *input, int i, int k, int j)
 {
 	int		*line;
 	int		*out;
-	int		i;
-	int		j;
-	int		k;
 
 	if (!(out = lem_intnew(INP_NODE_C)) ||
 				!(line = lem_intnew(INP_NODE_C)))
 		return (NULL);
-	i = 0;
-	k = 1;
 	line[0] = INP_START;
 	out[INP_START] = 0;
 	while (line[i] != -1)
@@ -103,7 +98,8 @@ static int		*lem_bgf(t_lem_in *input)
 		j = 0;
 		while (INP_MATRIX[line[i]][j] != '\0')
 		{
-			if (INP_MATRIX[line[i]][j] == '1' && !lem_intcmp(line, j, INP_NODE_C))
+			if (INP_MATRIX[line[i]][j] == '1' &&\
+			!lem_intcmp(line, j, INP_NODE_C))
 			{
 				line[k++] = j;
 				out[j] = out[line[i]] + 1;
@@ -126,7 +122,7 @@ t_routes		*lem_routes(t_lem_in *input)
 		return (NULL);
 	while (ROU_COUN < INP_NODE_C - 1)
 	{
-		bgf = lem_bgf(input);
+		bgf = lem_bgf(input, 0, 1, 0);
 		if (!(route = lem_make_route(input, bgf)))
 		{
 			free(bgf);
