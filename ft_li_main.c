@@ -6,7 +6,7 @@
 /*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 13:31:55 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/23 16:15:20 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/24 18:45:39 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,22 @@ int			ft_place_node_in_arr(t_lem_in *input, char *str)
 		i++;
 	}
 	return (-1);
+}
+
+int			ft_stone_check(t_lem_in *input, char *str1, char *str2)
+{
+	int	i;
+
+	i = 0;
+	while (i < INP_STONES_C)
+	{
+		if (!ft_strcmp(str1, INP_STONES[i]))
+			return (1);
+		if (!ft_strcmp(str2, INP_STONES[i]))
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
 void		ft_init_matrix(t_lem_in *input)
@@ -58,7 +74,7 @@ void		ft_init_matrix(t_lem_in *input)
 	INP_MATRIX = arr;
 }
 
-void		ft_add_tube(t_lem_in *input, char *line, int *j)
+void		ft_tube(t_lem_in *input, char *line, int *j)
 {
 	char	**arr;
 	int		i;
@@ -75,14 +91,41 @@ void		ft_add_tube(t_lem_in *input, char *line, int *j)
 		ft_li_free_arr(arr, i);
 		ft_go_further(input);
 	}
+	*j = 11;
 	first = ft_place_node_in_arr(input, arr[0]);
 	second = ft_place_node_in_arr(input, arr[1]);
-	*j = 11;
+	if (first < 0 || second < 0 || ft_stone_check(input, arr[0], arr[1]))
+		i = -10;
 	ft_li_free_arr(arr, i);
-	if (first < 0 || second < 0)
-		return ;
-	INP_MATRIX[first][second] = '1';
-	INP_MATRIX[second][first] = '1';
+	(i != -10) ? INP_MATRIX[first][second] = '1' : 0;
+	(i != -10) ? INP_MATRIX[second][first] = '1' : 0;
+}
+
+void		ft_stone(t_lem_in *input, char *line, int *j)
+{
+	char	**arr;
+	int		i;
+
+	arr = ft_strsplit(line, ' ');
+	i = 0;
+	while (arr[i])
+		i++;
+	if (i != 3 || ft_num_isdigit(arr[1]) || ft_num_isdigit(arr[2]) ||\
+	arr[0][0] == 'L' || ft_place_node_in_arr(input, arr[0]) >= 0)
+	{
+		free(line);
+		ft_li_free_arr(arr, i);
+		ft_go_further(input);
+	}
+	if (!INP_STONES)
+		INP_STONES = ft_memalloc(8 * 10000);
+	INP_STONES[INP_STONES_C++] = ft_strdup(arr[0]);
+	INP_NODES_NAMES[INP_NODE_C] = ft_strdup(arr[0]);
+	INP_NODES_XS[INP_NODE_C] = ft_strdup(arr[1]);
+	INP_NODES_YS[INP_NODE_C] = ft_strdup(arr[2]);
+	INP_NODE_C++;
+	ft_li_free_arr(arr, i);
+	*j = 1;
 }
 
 int			main(void)
@@ -95,15 +138,13 @@ int			main(void)
 	input = ft_input_init();
 	while (get_next_line(0, &line) > 0)
 	{
-		(line[0] != '#' && j >= 10 && j <= 20) ? (ft_add_tube(input, line, &j))\
-		: 0;
-		(line[0] != '#' && j > 0 && j < 10) ? (ft_add_node(input, line, &j, 0))\
-		: 0;
+		(line[0] != '#' && j >= 10 && j <= 20) ? (ft_tube(input, line, &j)) : 0;
+		(line[0] != '#' && j > 0 && j < 10) ? (ft_node(input, line, &j, 0)) : 0;
 		(j == 0) ? (ft_ant_count(input, line, &j)) : 0;
-		(j & (1 << 14)) ? (ft_li_end(input, line, &j)) : 0;
-		(j & (1 << 15)) ? (ft_li_start(input, line, &j)) : 0;
-		(line[0] == '#' && j >= 0 && j < 10) ? (ft_li_comment(input, line, &j))\
-		: 0;
+		(line[0] != '#' && j & (1 << 14)) ? (ft_li_end(input, line, &j)) : 0;
+		(line[0] != '#' && j & (1 << 15)) ? (ft_li_start(input, line, &j)) : 0;
+		(line[0] != '#' && j & (1 << 16)) ? (ft_stone(input, line, &j)) : 0;
+		(line[0] == '#') ? (ft_li_comment(input, line, &j)) : 0;
 		ft_putendl(line);
 		free(line);
 	}

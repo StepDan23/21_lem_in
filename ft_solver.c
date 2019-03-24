@@ -6,7 +6,7 @@
 /*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 21:34:27 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/23 13:22:11 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/24 18:45:55 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_go_further(t_lem_in *input)
 	}
 	solved = lem_routes(input);
 	if ((!solved) || ROU_COUN <= 0)
-		exit(ft_show_error_msg());
+		exit(ft_show_error());
 	ft_route_all_ants(solved, -1);
 	i = -1;
 	while (++i < ROU_COUN)

@@ -6,13 +6,16 @@
 /*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:38:55 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/23 15:27:44 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/24 17:38:12 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include <unistd.h>
 
+/*
+** готовим массив для движения муравьев. размеры строк равны длине маршрутов
+*/
 int		**ft_array_for_lemmin_moves(int rou_count, int *rou_sizes)
 {
 	int		**zone;
@@ -22,12 +25,15 @@ int		**ft_array_for_lemmin_moves(int rou_count, int *rou_sizes)
 	zone = malloc(8 * rou_count);
 	while (i < rou_count)
 	{
-		zone[i] = (int *)malloc(4 * rou_sizes[i] + 4);
+		zone[i] = (int *)ft_memalloc(4 * rou_sizes[i] + 4);
 		i++;
 	}
 	return (zone);
 }
 
+/*
+** проверка - остались ли незакрытые маршруты
+*/
 int		ft_is_finished_all(int *start, int *end, int len)
 {
 	int i;
@@ -42,12 +48,14 @@ int		ft_is_finished_all(int *start, int *end, int len)
 	return (0);
 }
 
-void	ft_lemmin_routine(t_routes *solved, int **zone, int k, int num)
+/*
+** перемещаем муравья и печатаем его движение на каждом шаге
+*/
+void	ft_lemmin_routine(t_routes *solved, int **zone, int k)
 {
 	int		i;
 
-	i = (ROU_ANT_OFFSET[k] < ROU_SIZES[k]) ? ROU_ANT_OFFSET[k]++ :\
-	ROU_ANT_OFFSET[k];
+	i = (ROU_ANT_OFFSET[k] < ROU_SIZES[k]) ? (ROU_ANT_OFFSET[k])++ : ROU_ANT_OFFSET[k];
 	(ROU_ANT_OFFSET[k] == ROU_SIZES[k]) ? ROU_ANT_FIN[k]++ : 0;
 	while (i > 0)
 	{
@@ -67,7 +75,6 @@ void	ft_lemmin_routine(t_routes *solved, int **zone, int k, int num)
 /*
 ** k - is num of route.
 */
-
 void	ft_lemmin_moves(t_routes *solved, int i, int k, int num_of_ant_in_tube)
 {
 	int	**zone;
@@ -77,18 +84,23 @@ void	ft_lemmin_moves(t_routes *solved, int i, int k, int num_of_ant_in_tube)
 	{
 		if (ROU_ANT_NUM[k] != ROU_ANT_FIN[k])
 		{
-			ft_lemmin_routine(solved, zone, k, num_of_ant_in_tube);
+			ft_lemmin_routine(solved, zone, k);
 			if (ROU_ANT_LEFT[k] == 0)
 				zone[k][0] = 0;
 			if (ROU_ANT_LEFT[k] > 0)
 			{
 				zone[k][0] = num_of_ant_in_tube;
+				write(1, "L", 1);
+				ft_putnbr(zone[k][0]);
+				write(1, "-", 1);
+				ft_putstr(ROU_ARR[k][0]);
+				write(1, " ", 1);
 				(num_of_ant_in_tube)++;
 				ROU_ANT_LEFT[k]--;
 			}
 		}
 		k = (k + 1) % ROU_NUM_WAYS;
-		(k == 0 && ROU_ANT_OFFSET[ROU_NUM_WAYS - 1] > 1) ? ft_putchar('\n') : 0;
+		(k == 0) ? ft_putchar('\n') : 0;
 	}
 	(k != 0) ? ft_putchar('\n') : 0;
 	while (--ROU_NUM_WAYS >= 0)

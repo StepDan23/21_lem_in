@@ -6,7 +6,7 @@
 /*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 13:32:31 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/23 13:27:57 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/24 18:01:36 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ typedef struct		s_lem_in
 	char			***nodes;
 	int				node_count;
 	char			**matrix_adjacencies;
-	int				flag;
+	char			**stones;
+	int				stones_count;
 }					t_lem_in;
 
 typedef struct		s_routes
@@ -41,9 +42,18 @@ typedef struct		s_routes
 }					t_routes;
 
 /*
-** ROU_NUM_WAYS - количество активных путей (количество путей в котороых кол-во
+** ROU_ARR			- маршруты
+** ROU_SIZES		- размеры каждого пути рассчитаных алгоритмом
+** ROU_COUN			- количество путей рассчитанных алгоритмом
+** ROU_ANT_C		- количество муравьев всего
+** ROU_ANT_NUM		- Количество муравьев на каждом из путей
+** ROU_NUM_WAYS		- количество активных путей (путей в которых кол-во
 ** муравьев больше 0)
-** ROU_ANT_NUM - Количество муравьев на каждом из путей
+** ROU_ANT_FIN		- количество муравьев в конечной точке на кажом из путей
+** ROU_ANT_LEFT		- массив с количеством муравьев ожидающих выхода на каждом
+**					  из путей
+** ROU_ANT_OFFSET	- позиция первого муравья в маршруте (когда первый муравей
+**					  доходит до конца значение не меняется)
 */
 
 # define INP_ANT_C			(input->ant_count)
@@ -56,6 +66,9 @@ typedef struct		s_routes
 # define INP_NODE_C			(input->node_count)
 # define INP_MATRIX			(input->matrix_adjacencies)
 # define INP_FLAG			(input->flag)
+# define INP_STONES			(input->stones)
+# define INP_STONES_C		(input->stones_count)
+
 # define ROU_ARR			(solved->routes)
 # define ROU_SIZES			(solved->route_size)
 # define ROU_COUN			(solved->routes_count)
@@ -75,8 +88,8 @@ void				ft_li_comment(t_lem_in *input, char *line, int *j);
 void				ft_li_start(t_lem_in *input, char *line, int *j);
 void				ft_li_end(t_lem_in *input, char *line, int *j);
 void				ft_init_matrix(t_lem_in *input);
-void				ft_add_tube(t_lem_in *input, char *line, int *j);
-void				ft_add_node(t_lem_in *input, char *line, int *j, int i);
+void				ft_tube(t_lem_in *input, char *line, int *j);
+void				ft_node(t_lem_in *input, char *line, int *j, int i);
 int					ft_place_node_in_arr(t_lem_in *input, char *str);
 int					ft_num_isdigit(char *num);
 t_lem_in			*ft_input_init(void);

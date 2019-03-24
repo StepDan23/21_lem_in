@@ -6,7 +6,7 @@
 /*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 21:13:34 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/20 18:56:36 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/24 18:01:38 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ t_lem_in	*ft_input_init(void)
 	INP_END = -1;
 	INP_NODE_C = 0;
 	INP_MATRIX = NULL;
+	INP_STONES = NULL;
+	INP_STONES_C = 0;
 	return (input);
 }
 

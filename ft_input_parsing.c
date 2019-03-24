@@ -6,7 +6,7 @@
 /*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/23 13:28:05 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/23 17:23:55 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/24 18:22:22 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		ft_li_comment(t_lem_in *input, char *line, int *j)
 {
 	if (line[1] == '#')
 	{
-		if (*j > 10)
+		if (*j >= 10 && *j <= 20)
 		{
 			free(line);
 			ft_go_further(input);
@@ -40,7 +40,10 @@ void		ft_li_comment(t_lem_in *input, char *line, int *j)
 			*j = 1 << 15;
 		else if (!ft_strcmp(&(line[2]), "end"))
 			*j = 1 << 14;
+		return ;
 	}
+	if (!ft_strcmp(&(line[1]), "stone"))
+		*j = 1 << 16;
 }
 
 void		ft_li_start(t_lem_in *input, char *line, int *j)
@@ -93,7 +96,7 @@ void		ft_li_end(t_lem_in *input, char *line, int *j)
 	*j = 1;
 }
 
-void		ft_add_node(t_lem_in *input, char *line, int *j, int i)
+void		ft_node(t_lem_in *input, char *line, int *j, int i)
 {
 	char	**arr;
 
@@ -104,7 +107,7 @@ void		ft_add_node(t_lem_in *input, char *line, int *j, int i)
 	if (i == 1)
 	{
 		ft_li_free_arr(arr, i);
-		ft_add_tube(input, line, j);
+		ft_tube(input, line, j);
 		return ;
 	}
 	if (i != 3 || ft_num_isdigit(arr[1]) || ft_num_isdigit(arr[2]) ||\
