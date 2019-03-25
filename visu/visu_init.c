@@ -6,7 +6,7 @@
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 19:01:47 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/25 14:24:36 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/25 19:31:47 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_window		*window_init(void)
 
 	window = (t_window*)malloc(sizeof(t_window));
 	WIN_QUIT = 0;
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	if (SDL_Init(SDL_INIT_VIDEO) < 0 || TTF_Init() < 0)
 	{
 		ft_printf("Init_Error: %s\n", SDL_GetError());
 		return (NULL);
@@ -45,7 +45,7 @@ t_prop			*prop_init(t_window *window)
 
 	if (!(map = (t_prop*)malloc(sizeof(t_prop))))
 		return (0);
-	MAP_SCALE = 0.5;
+	MAP_SCALE = 0.3;
 	MAP_NODE_C = 7;
 	MAP_COORDS = (int**)malloc(sizeof(int*) * 7);
 	int i = 0;

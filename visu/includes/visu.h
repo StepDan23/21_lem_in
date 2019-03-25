@@ -6,7 +6,7 @@
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:39:31 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/25 12:54:21 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/25 16:32:52 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct		s_window
 	SDL_Window		*window;
 	SDL_Renderer	*window_render;
 	SDL_Texture		*background;
+	SDL_Texture		*tubes;
 	SDL_Texture		*ant;
 	TTF_Font 		*font;
 	char			quit;
@@ -45,6 +46,7 @@ typedef struct		s_window
 # define WIN_WIN	(window->window)
 # define WIN_REND	(window->window_render)
 # define WIN_BACK	(window->background)
+# define WIN_TUBES	(window->tubes)
 # define WIN_ANT	(window->ant)
 # define WIN_FONT	(window->font)
 # define WIN_QUIT	(window->quit)

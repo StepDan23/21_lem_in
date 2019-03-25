@@ -6,7 +6,7 @@
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:16:13 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/25 14:26:39 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/25 19:01:54 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void		render_back(t_window *window)
 	SDL_Rect	clip_area;
 
 	clip_area = (SDL_Rect){0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
-	SDL_RenderCopy(WIN_REND, WIN_BACK, NULL, &clip_area);
+	SDL_RenderCopy(WIN_REND, WIN_TUBES, NULL, &clip_area);
 }
 
 void		render_ant(t_window *window, int x, int y, int angle, int frame)
@@ -38,40 +38,6 @@ void		render_ant(t_window *window, int x, int y, int angle, int frame)
 	render_area = (SDL_Rect){x, y, ANT_WIDTH, ANT_HEIGHT};
 	SDL_RenderCopyEx(WIN_REND, WIN_ANT, &clip_area, &render_area, angle, NULL, SDL_FLIP_NONE);
 }
-
-
-// void		render_window(t_visu *window)
-// {
-// 	int		frame;
-
-// 	frame = 0;
-// 	while (!WIN_QUIT)
-// 	{
-// 		while (SDL_PollEvent(&e) != 0)
-// 		{
-// 			if (e.type == SDL_QUIT)
-// 				WIN_QUIT = 1;
-// 			if (e.type == SDL_KEYDOWN)
-// 			{
-// 				if (e.key.keysym.sym == SDLK_ESCAPE)
-// 					WIN_QUIT = 1;
-// 			}
-// 		}
-// 		SDL_RenderClear(WIN_REND);
-// 		x += 3 * a;
-// 		y += 3 * b;
-// 		if (x + 216 > SCREEN_WIDTH || x < 0)
-// 			a *= -1;
-// 		if (y + 300 > SCREEN_HEIGHT || y  < 0)
-// 			b *= -1;
-// 		frame += (frame > 27) ? -frame : 1;
-// 		render_back(window);
-// 		render_ant(window, x, y, 135, frame / 7);
-// 		SDL_RenderPresent(WIN_REND);
-// 		SDL_Delay(10);
-		
-// 	}
-// }
 
 void		render_status(t_window *window, t_rend *render)
 {
@@ -97,47 +63,23 @@ void		render_status(t_window *window, t_rend *render)
 	SDL_DestroyTexture(text);
 }
 
-void		render_tubes(t_window *window, t_prop *map)
-{
-	SDL_Point	lines[2];
-	int			nodes;
-	int			i;
-
-	nodes = MAP_NODE_C - 1;
-	while (nodes >= 0)
-	{
-		i = 0;
-		lines[0].x = MAP_COORDS[nodes][0];
-		lines[0].y = MAP_COORDS[nodes][1];
-		while (i < MAP_NODE_C)
-		{
-			if (MAP_MATRIX[nodes][i] == '1')
-			{
-				lines[1].x = MAP_COORDS[i][0];
-				lines[1].y = MAP_COORDS[i][1];
-				thickLineRGBA (WIN_REND, MAP_COORDS[nodes][0], MAP_COORDS[nodes][1],
-							MAP_COORDS[i][0], MAP_COORDS[i][1], 5, 101, 67, 33, 40);
-			}
-			i++;
-		}
-		nodes--;
-	}
-}
-
 void		window_close(t_window *window)
 {
+	if (WIN_REND != NULL)
+		SDL_DestroyRenderer(WIN_REND);
 	if (WIN_BACK != NULL)
-	{
 		SDL_DestroyTexture(WIN_BACK);
-		WIN_BACK = NULL;
-	}
+	WIN_BACK = NULL;
 	if (WIN_ANT != NULL)
-	{
 		SDL_DestroyTexture(WIN_ANT);
-		WIN_ANT = NULL;
-	}
+	WIN_ANT = NULL;
+	if (WIN_FONT != NULL)
+		TTF_CloseFont(WIN_FONT);
+	WIN_FONT = NULL;
 	SDL_DestroyWindow(WIN_WIN);
 	WIN_WIN = NULL;
+	TTF_Quit();
+	IMG_Quit();
 	SDL_Quit();
 }
 
@@ -157,7 +99,7 @@ int		main(void)
 
 	if (!(window = window_init()) ||
 			!(map = prop_init(window)) ||
-				!(render = rend_init(window, map)) || !(load_files(window, map)))
+				!(render = rend_init(window, map)) || (load_files(window, map)))
 		return (0);
 	while (!WIN_QUIT)
 	{
@@ -180,11 +122,12 @@ int		main(void)
 		// if (y + 300 > SCREEN_HEIGHT || y  < 0)
 		// 	b *= -1;
 		// move
+		
 		SDL_RenderSetScale(WIN_REND, 1, 1);
-		render_back(window);
+		SDL_RenderCopy(WIN_REND, WIN_TUBES, NULL, NULL);
 		render_status(window, render);
 		SDL_RenderSetScale(WIN_REND, MAP_SCALE, MAP_SCALE);
-		render_tubes(window, map);
+		// render_tubes(window, map);
 		render_ant(window, x, y, 135, ((REN_FRAME % 32) / 8));
 		SDL_RenderPresent(WIN_REND);
 		REN_FRAME += (REN_FRAME == 1000) ? -1000 : 1;
