@@ -6,13 +6,12 @@
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:16:13 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/24 20:01:02 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/25 14:26:39 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/visu.h"
 
-float scale =0.5;
 int node = 7;
  
 
@@ -74,23 +73,53 @@ void		render_ant(t_window *window, int x, int y, int angle, int frame)
 // 	}
 // }
 
+void		render_status(t_window *window, t_rend *render)
+{
+	SDL_Surface	*text_surf;
+	SDL_Texture	*text;
+	SDL_Rect	src;
+	SDL_Rect	dst;
+
+	text_surf = TTF_RenderText_Blended(WIN_FONT, "Ants at start: 110",
+									(SDL_Color){255, 255, 255, 200});
+	text = SDL_CreateTextureFromSurface(WIN_REND, text_surf);
+	SDL_FreeSurface(text_surf);
+	src = (SDL_Rect){0, 0, 400, 100};
+	dst = (SDL_Rect){460, 0, 180, 25};
+	SDL_RenderCopy(WIN_REND, text, &src, &dst);
+	SDL_DestroyTexture(text);
+	text_surf = TTF_RenderText_Blended(WIN_FONT, "Ants at end: 110",
+									(SDL_Color){255, 255, 255, 200});
+	text = SDL_CreateTextureFromSurface(WIN_REND, text_surf);
+	SDL_FreeSurface(text_surf);
+	dst = (SDL_Rect){460 , 20, 165, 25};
+	SDL_RenderCopy(WIN_REND, text, &src, &dst);
+	SDL_DestroyTexture(text);
+}
+
 void		render_tubes(t_window *window, t_prop *map)
 {
-	SDL_Rect	render_area;
-	SDL_Rect	clip_area;
-	int			nodes;
 	SDL_Point	lines[2];
+	int			nodes;
+	int			i;
 
 	nodes = MAP_NODE_C - 1;
-	while (nodes)
+	while (nodes >= 0)
 	{
+		i = 0;
 		lines[0].x = MAP_COORDS[nodes][0];
 		lines[0].y = MAP_COORDS[nodes][1];
-		lines[1].x = MAP_COORDS[nodes - 1][0];
-		lines[1].y = MAP_COORDS[nodes - 1][1];
-		thickLineRGBA (WIN_REND, MAP_COORDS[nodes][0], MAP_COORDS[nodes][1], 
-						MAP_COORDS[nodes - 1][0], MAP_COORDS[nodes - 1][1],
-															3, 101, 67, 33, 200);
+		while (i < MAP_NODE_C)
+		{
+			if (MAP_MATRIX[nodes][i] == '1')
+			{
+				lines[1].x = MAP_COORDS[i][0];
+				lines[1].y = MAP_COORDS[i][1];
+				thickLineRGBA (WIN_REND, MAP_COORDS[nodes][0], MAP_COORDS[nodes][1],
+							MAP_COORDS[i][0], MAP_COORDS[i][1], 5, 101, 67, 33, 40);
+			}
+			i++;
+		}
 		nodes--;
 	}
 }
@@ -112,18 +141,17 @@ void		window_close(t_window *window)
 	SDL_Quit();
 }
 
+
+
 int		main(void)
 {
 	t_window	*window;
 	t_prop		*map;
 	t_rend		*render;
 	SDL_Event	e;
-	
-	ft_printf("12\n");
-	
-	int		frame = 0;
-	int			x = 0;
-	int			y = 0;
+
+	int			x = 100;
+	int			y = 100;
 	int a = 1;
 	int b = 1;
 
@@ -131,7 +159,6 @@ int		main(void)
 			!(map = prop_init(window)) ||
 				!(render = rend_init(window, map)) || !(load_files(window, map)))
 		return (0);
-		ft_printf("12\n");
 	while (!WIN_QUIT)
 	{
 		while (SDL_PollEvent(&e) != 0)
@@ -146,20 +173,21 @@ int		main(void)
 		}
 		SDL_RenderClear(WIN_REND);
 		//move
-		x += 5 * a;
-		y += 5 * b;
-		if (x + 216 > SCREEN_WIDTH || x < 0)
-			a *= -1;
-		if (y + 300 > SCREEN_HEIGHT || y  < 0)
-			b *= -1;
+		// x += 5 * a;
+		// y += 5 * b;
+		// if (x + 216 > SCREEN_WIDTH || x < 0)
+		// 	a *= -1;
+		// if (y + 300 > SCREEN_HEIGHT || y  < 0)
+		// 	b *= -1;
 		// move
 		SDL_RenderSetScale(WIN_REND, 1, 1);
 		render_back(window);
-		SDL_RenderSetScale(WIN_REND, scale, scale);
+		render_status(window, render);
+		SDL_RenderSetScale(WIN_REND, MAP_SCALE, MAP_SCALE);
 		render_tubes(window, map);
-		render_ant(window, x, y, 135, frame / 15);
+		render_ant(window, x, y, 135, ((REN_FRAME % 32) / 8));
 		SDL_RenderPresent(WIN_REND);
-		REN_FRAME++;
+		REN_FRAME += (REN_FRAME == 1000) ? -1000 : 1;
 		// SDL_Delay(0);
 	}
 	window_close(window);

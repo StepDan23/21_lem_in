@@ -6,7 +6,7 @@
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:39:31 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/24 19:48:39 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/25 12:54:21 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,13 @@
 # define SCREEN_HEIGHT 900
 # define ANT_WIDTH 129
 # define ANT_HEIGHT 180
-# define TUBE_WIDTH 1200
-# define TUBE_HEIGHT 142
 # define BOX_WIDTH 188
 # define BOX_HEIGHT 142
 
-# include "SDL.h"
-# include "SDL_image.h"
-#include "SDL2_gfxPrimitives.h"
+# include <SDL2_gfxPrimitives.h>
+# include <SDL.h>
+# include <SDL_image.h>
+# include <SDL_ttf.h>
 // #include "SDL_framerate.h"
 // #include "SDL_gfxBlitFunc.h"
 // #include "SDL_gfxPrimitives_font.h"
@@ -39,6 +38,7 @@ typedef struct		s_window
 	SDL_Renderer	*window_render;
 	SDL_Texture		*background;
 	SDL_Texture		*ant;
+	TTF_Font 		*font;
 	char			quit;
 }					t_window;
 
@@ -46,6 +46,7 @@ typedef struct		s_window
 # define WIN_REND	(window->window_render)
 # define WIN_BACK	(window->background)
 # define WIN_ANT	(window->ant)
+# define WIN_FONT	(window->font)
 # define WIN_QUIT	(window->quit)
 
 typedef struct		s_prop

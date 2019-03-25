@@ -12,7 +12,7 @@ clear:
 v:
 	gcc ./visu/ft_vi_main.c ./visu/visu_init.c ./visu/visu_load.c libft/libft.a \
 	-I ~/Library/Frameworks/SDL2.framework/Versions/A/Headers \
-	-F ~/Library/Frameworks/ -framework SDL2 \
 	-I ~/Library/Frameworks/SDL2_image.framework/Versions/A/Headers \
-	-F ~/Library/Frameworks/ -framework SDL2 -framework SDL2_image \
-	~/SDL_gfx/*.c -I ~/SDL_gfx/\
+	-I ~/Library/Frameworks/SDL2_ttf.framework/Versions/A/Headers \
+	-F ~/Library/Frameworks/ -framework SDL2 -framework SDL2_image -framework SDL2_ttf \
+	~/SDL_gfx/*.c -I ~/SDL_gfx/

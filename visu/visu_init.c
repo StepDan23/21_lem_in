@@ -6,7 +6,7 @@
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 19:01:47 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/24 19:53:48 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/25 14:24:36 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ t_window		*window_init(void)
 	t_window	*window;
 
 	window = (t_window*)malloc(sizeof(t_window));
-	WIN_WIN = NULL;
-	WIN_REND = NULL;
 	WIN_QUIT = 0;
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -47,7 +45,7 @@ t_prop			*prop_init(t_window *window)
 
 	if (!(map = (t_prop*)malloc(sizeof(t_prop))))
 		return (0);
-	map->scale = 0.5;
+	MAP_SCALE = 0.5;
 	MAP_NODE_C = 7;
 	MAP_COORDS = (int**)malloc(sizeof(int*) * 7);
 	int i = 0;
@@ -67,6 +65,28 @@ t_prop			*prop_init(t_window *window)
 	MAP_COORDS[5][1] = 500;
 	MAP_COORDS[6][0] = 1050;
 	MAP_COORDS[6][1] = 500;
+	MAP_MATRIX = (char**)malloc(sizeof(char*) * 7);
+	i = 0;
+	while (i < 7)
+		MAP_MATRIX[i++] = ft_strnew(7);
+	ft_strcpy(MAP_MATRIX[0], "0110010");
+	ft_strcpy(MAP_MATRIX[1], "0001000");
+	ft_strcpy(MAP_MATRIX[2], "0000011");
+	ft_strcpy(MAP_MATRIX[3], "0000100");
+	ft_strcpy(MAP_MATRIX[4], "0000001");
+	ft_strcpy(MAP_MATRIX[5], "0000001");
+	ft_strcpy(MAP_MATRIX[6], "0000000");
+	MAP_NAMES = (char**)malloc(sizeof(char*) * 7);
+	i = 0;
+	while (i < 7)
+		MAP_NAMES[i++] = ft_strnew(50);
+	ft_strcpy(MAP_NAMES[0], "start");
+	ft_strcpy(MAP_NAMES[1], "1st");
+	ft_strcpy(MAP_NAMES[2], "4th");
+	ft_strcpy(MAP_NAMES[3], "2nd");
+	ft_strcpy(MAP_NAMES[4], "3rd");
+	ft_strcpy(MAP_NAMES[5], "5th");
+	ft_strcpy(MAP_NAMES[6], "end");
 	return (map);
 }
 
