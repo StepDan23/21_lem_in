@@ -6,7 +6,7 @@
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:39:31 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/26 15:02:58 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/26 16:45:48 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ typedef struct		s_prop
 
 typedef struct		s_move
 {
-	int				x;
-	int				y;
+	float			x;
+	float			y;
 	float			dx;
 	float			dy;
 	int				angle;

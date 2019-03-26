@@ -6,7 +6,7 @@
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:16:13 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/26 14:19:04 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/26 15:37:08 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,9 @@ int			main(void)
 					WIN_QUIT = 1;
 			}
 		}
-		frame_render(window, map, render);
 		SDL_Delay(10);
+		frame_render(window, map, render);
+		
 	}
 	window_close(window);
 	return (1);
