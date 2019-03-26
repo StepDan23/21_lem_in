@@ -6,13 +6,14 @@
 /*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/23 14:23:22 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/24 18:54:22 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/26 17:32:06 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "visual.h"
+//#include "visu.h"
 
 int		ft_show_error(void)
 {
@@ -54,6 +55,8 @@ t_visual	*ft_init_parse(void)
 	Y_MAX = -1;
 	X_MIN = 2000000000;
 	Y_MIN = 2000000000;
+	ANT_MOVE = NULL;
+	STEPS = 0;
 	return (parse);
 }
 
@@ -117,7 +120,6 @@ void		ft_add_tube(t_visual *parse, char *line, int *j)
 		return ;
 	MATRIX[first][second] = '1';
 	MATRIX[second][first] = '1';
-
 }
 
 void		ft_add_node(t_visual *parse, char *line, int *j, int i)
@@ -202,24 +204,64 @@ void		ft_li_comment(t_visual *parse, char *line, int *j)
 
 void	ft_go_further(t_visual *parse)
 {
-	int i;
-
-	i = SIZE;
-	printf("size = %d\n", SIZE);
-	printf("start = %s, end = %s\nNames:\n", NAME[START], NAME[END]);
-	for (i = 0; i < SIZE; i++)
-		printf("%s, y = %d, x = %d\n", NAME[i], COORD[i][0], COORD[i][1]);
-	for (i = 0; i < SIZE; i++)
-	{
-		for (int j = 0; j < SIZE; j++)
-			printf("%c", MATRIX[i][j]);
-		printf("\n");
-	}
-	printf("X_MAX = %d, X_MIN = %d\n", X_MAX, X_MIN);
-	printf("Y_MAX = %d, Y_MIN = %d\n", Y_MAX, Y_MIN);
 	X_RAT = 1200.0 / (X_MAX - X_MIN); 
 	Y_RAT = 900.0 / (Y_MAX - Y_MIN);
-	printf("%f, %f\n", X_RAT, Y_RAT);
+	
+	for (int i = 0; i < STEPS; i++)
+	{
+		for (int j = 0; j < ANT_C; j++)
+			ft_printf("%3d ", ANT_MOVE[i][j]);
+		ft_putchar('\n');
+	}
+}
+
+void		ft_ant_count(t_visual *parse, char *line, int *j)
+{
+	int		res;
+
+	res = ft_atoi(line);
+	ANT_C = res;
+	*j = 1;
+}
+
+void	ft_ant_move_parse(t_visual *parse, char *line, int *j)
+{
+	int		i;
+	int		k;
+	char	**all_ants;
+	char	**ant_data;
+
+	i = 0;
+	if (ANT_MOVE == 0)
+	{
+		ANT_MOVE = malloc(8 * 10000);
+		(!ANT_MOVE) ? exit(ft_show_error()) : 0;
+		while (i < ANT_C + SIZE)
+		{
+			ANT_MOVE[i] = ft_memalloc(4 * ANT_C);
+			(!(ANT_MOVE[i])) ? exit(ft_show_error()) : 0;
+			k = 0;
+			while (k < ANT_C)
+				ANT_MOVE[i][k++] = -1;
+			i++;
+		}
+		ANT_MOVE[i] = NULL;
+	}
+	i = 0;
+	k = 0;
+	all_ants = ft_strsplit(line, ' ');
+	i = 0;
+	while (all_ants[i])
+	{
+		ant_data = ft_strsplit(&(all_ants[i][1]), '-');
+		k = ft_place_node_in_arr(parse, ant_data[1]);
+		ANT_MOVE[STEPS][ft_atoi(ant_data[0]) - 1] = k;
+		free(ant_data[1]);
+		free(ant_data[0]);
+		free(ant_data);
+		i++;
+	}
+	STEPS++;
 }
 
 int main(void)
@@ -229,18 +271,16 @@ int main(void)
 	int			j;
 
 	j = 0;
-	for (int i = 0; i < 50; i++)
-		ft_putchar('\n');
 	parse = ft_init_parse();
 	while (get_next_line(0, &line) > 0)
 	{
 		(line[0] != '#' && j >= 10 && j <= 20) ? (ft_add_tube(parse, line, &j)) : 0;
 		(line[0] != '#' && j > 0 && j < 10) ? (ft_add_node(parse, line, &j, 0)) : 0;
-		(j == 0) ? (j = 1) : 0;
+		(j == 0) ? ft_ant_count(parse, line, &j) : 0;
 		(j & (1 << 14)) ? (ft_li_end(parse, line, &j)) : 0;
 		(j & (1 << 15)) ? (ft_li_start(parse, line, &j)) : 0;
 		(line[0] == '#' && j >= 0 && j < 10) ? (ft_li_comment(parse, line, &j)) : 0;
-		ft_putendl(line);
+		(line[0] == 'L') ? ft_ant_move_parse(parse, line, &j) : 0;
 		free(line);
 	}
 	(j) ? (free(line)) : 0;

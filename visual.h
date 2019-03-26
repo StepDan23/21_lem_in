@@ -6,7 +6,7 @@
 /*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/23 15:28:56 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/23 18:38:30 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/26 16:09:01 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ typedef struct		s_visual
 	int		x_max;
 	int		y_min;
 	int		y_max;
+	int		ant_count;
+	int		**ant_moves;
+	int		steps;
 }					t_visual;
 
 # define NAME (parse->names)
@@ -43,5 +46,8 @@ typedef struct		s_visual
 # define X_MAX (parse->x_max)
 # define Y_MIN (parse->y_min)
 # define Y_MAX (parse->y_max)
+# define ANT_C (parse->ant_count)
+# define ANT_MOVE (parse->ant_moves)
+# define STEPS (parse->steps)
 
 #endif
