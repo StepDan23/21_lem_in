@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visu_render.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 11:09:44 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/26 16:57:49 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/26 19:45:06 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void			calc_move(t_prop *map, t_rend *render)
 	ant_num = ANTS_COU - 1;
 	while (ant_num >= 0)
 	{
-		ft_printf("%d st-%d states-%d\n", ant_num, ST_CUR, STATES[ST_CUR][ant_num]);
+		//ft_printf("%d st-%d states-%d\n", ant_num, ST_CUR, STATES[ST_CUR][ant_num]);
 		if ((ST_CUR > ST_LAST) || STATES[ST_CUR][ant_num] == -1)
 			T_MOVE[ant_num] = (t_move){T_MOVE[ant_num].x, T_MOVE[ant_num].y, 0, 0, 0};
 		else if (STATES[ST_CUR][ant_num] != -1)
@@ -77,7 +77,7 @@ void			calc_move(t_prop *map, t_rend *render)
 			T_MOVE[ant_num].dx = d_x / (float) FR_LIMIT * 1.1;
 			T_MOVE[ant_num].dy = d_y / (float) FR_LIMIT * 1.1;
 			T_MOVE[ant_num].angle = atan2((float)d_y,(float)d_x) * 180 / M_PI;
-				ft_printf("dx-%f dy-%f angle-%d\n", T_MOVE[ant_num].dx,T_MOVE[ant_num].dy, T_MOVE[ant_num].angle);
+			//	ft_printf("dx-%f dy-%f angle-%d\n", T_MOVE[ant_num].dx,T_MOVE[ant_num].dy, T_MOVE[ant_num].angle);
 		}
 		ant_num--;
 	}
@@ -107,7 +107,7 @@ static void		render_ants(t_window *window, t_prop *map, t_rend *render)
 				T_MOVE[ant_num].y += T_MOVE[ant_num].dy;
 				render_ant_pos(window, T_MOVE[ant_num], FR_CUR % 32 / 8, 0);
 			}
-				ft_printf("frame--%d\n", FR_CUR);
+				//ft_printf("frame--%d\n", FR_CUR);
 		}
 	if (ANTS_START != 0)
 		render_ant_pos(window, 

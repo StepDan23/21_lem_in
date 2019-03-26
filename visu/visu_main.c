@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   visu_main.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:16:13 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/26 15:37:08 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/26 19:30:23 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/visu.h"
+
+t_visual	*parse;
 
 void		window_close(t_window *window)
 {
@@ -35,6 +37,7 @@ void		window_close(t_window *window)
 	SDL_Quit();
 }
 
+#include <stdio.h>
 int			main(void)
 {
 	t_window	*window;
@@ -42,10 +45,12 @@ int			main(void)
 	t_rend		*render;
 	SDL_Event	e;
 
+	parse = ft_parse_income_from_lem_in();
+	ft_visual_tests(parse);
 	if (!(window = window_init()) ||
-			!(map = prop_init(window)) ||
-				!(render = rend_init(window, map)) || (load_files(window, map)))
-		return (0);	
+			!(map = prop_init(window, parse)) ||
+				!(render = rend_init(window, map, parse)) || (load_files(window, map)))
+		return (0);
 	while (!WIN_QUIT)
 	{
 		while (SDL_PollEvent(&e) != 0)
@@ -60,7 +65,6 @@ int			main(void)
 		}
 		SDL_Delay(10);
 		frame_render(window, map, render);
-		
 	}
 	window_close(window);
 	return (1);

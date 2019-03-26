@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visu.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:39:31 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/26 16:45:48 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/26 19:28:21 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,15 @@ typedef struct		s_window
 # define FONT_STAT	(window->f_status)
 # define WIN_QUIT	(window->quit)
 
+typedef struct		s_move
+{
+	float			x;
+	float			y;
+	float			dx;
+	float			dy;
+	int				angle;
+}					t_move;
+
 typedef struct		s_prop
 {
 	float			scale;
@@ -61,15 +70,6 @@ typedef struct		s_prop
 # define MAP_MATRIX	(map->matrix_adjastment)
 # define MAP_COORDS	(map->nod_coord)
 # define MAP_NAMES	(map->nod_names)
-
-typedef struct		s_move
-{
-	float			x;
-	float			y;
-	float			dx;
-	float			dy;
-	int				angle;
-}					t_move;
 
 typedef struct		s_rend
 {
@@ -97,13 +97,67 @@ typedef struct		s_rend
 # define POS_START	(render->pos_start)
 # define POS_END	(render->pos_end)
 # define T_MOVE		(render->moves)
+# define STATES_LEN (render->states_len)
+
+typedef struct		s_visual
+{
+	char			**names;
+	int				**coords;
+	int				node_count;
+	double			x_ratio;
+	double			y_ratio;
+	int				start;
+	int				end;
+	char			**matrix_adjastment;
+	int				x_min;
+	int				x_max;
+	int				y_min;
+	int				y_max;
+	int				ant_count;
+	int				**ant_moves;
+	int				steps;
+}					t_visual;
+
+# define NAME (parse->names)
+# define COORD (parse->coords)
+# define SIZE (parse->node_count)
+# define X_RAT (parse->x_ratio)
+# define Y_RAT (parse->y_ratio)
+# define MATRIX (parse->matrix_adjastment)
+# define START (parse->start)
+# define END (parse->end)
+# define X_MIN (parse->x_min)
+# define X_MAX (parse->x_max)
+# define Y_MIN (parse->y_min)
+# define Y_MAX (parse->y_max)
+# define ANT_C (parse->ant_count)
+# define ANT_MOVE (parse->ant_moves)
+# define STEPS (parse->steps)
+
+t_visual			*ft_init_parse(void);
+void				ft_init_matrix(t_visual *parse);
+void				ft_init_steps(t_visual *parse);
+void				ft_li_free_char_arr(char **arr, int i);
+int					ft_show_error(void);
+void				ft_li_comment(t_visual *parse, char *line, int *j);
+void				ft_add_tube(t_visual *parse, char *line, int *j);
+void				ft_add_node(t_visual *parse, char *line, int *j, int i);
+void				ft_li_end(t_visual *parse, char *line, int *j);
+void				ft_li_start(t_visual *parse, char *line, int *j);
+int					ft_place_node_in_arr(t_visual *parse, char *str);
+void				ft_go_further(t_visual *parse);
+void				ft_ant_count(t_visual *parse, char *line, int *j);
+void				ft_ant_move_parse(t_visual *parse, char *line, int *j);
+t_visual			*ft_parse_income_from_lem_in(void);
 
 t_window			*window_init(void);
-t_prop				*prop_init(t_window *window);
-t_rend				*rend_init(t_window *window, t_prop *map);
+t_prop				*prop_init(t_window *window, t_visual *parse);
+t_rend				*rend_init(t_window *window, t_prop *map, t_visual *parse);
 
 int					load_files(t_window *window, t_prop *map);
 void				window_close(t_window *window);
 void				frame_render(t_window *window, t_prop *map, t_rend *render);
+void				ft_visual_tests(t_visual *parse);
+
 
 #endif
