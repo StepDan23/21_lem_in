@@ -6,7 +6,7 @@
 /*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/23 14:23:22 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/23 18:40:24 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/24 18:54:22 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,8 +217,8 @@ void	ft_go_further(t_visual *parse)
 	}
 	printf("X_MAX = %d, X_MIN = %d\n", X_MAX, X_MIN);
 	printf("Y_MAX = %d, Y_MIN = %d\n", Y_MAX, Y_MIN);
-	X_RAT = (X_MAX - X_MIN) / 1200.0;
-	Y_RAT = (Y_MAX - Y_MIN) / 1200.0;
+	X_RAT = 1200.0 / (X_MAX - X_MIN); 
+	Y_RAT = 900.0 / (Y_MAX - Y_MIN);
 	printf("%f, %f\n", X_RAT, Y_RAT);
 }
 
