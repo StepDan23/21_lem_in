@@ -6,7 +6,7 @@
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:39:31 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/26 14:45:06 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/26 15:02:58 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,15 +74,15 @@ typedef struct		s_move
 typedef struct		s_rend
 {
 	int				ants_start;
-	int				ants_end;
-	int				ants_count;
+	int				ants_end; 
+	int				ants_count;// yours
 	int				frame_current;
 	int				frame_limit;
-	int				**states;
+	int				**states; //new matrix
 	int				current_state;
 	int				last_state;
-	int				pos_start;
-	int				pos_end;
+	int				pos_start;   // start end
+	int				pos_end;   // start end
 	t_move			*moves;
 }					t_rend;
 
