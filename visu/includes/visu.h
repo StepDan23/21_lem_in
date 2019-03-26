@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visu.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:39:31 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/26 19:28:21 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/26 20:03:22 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,5 +159,7 @@ void				window_close(t_window *window);
 void				frame_render(t_window *window, t_prop *map, t_rend *render);
 void				ft_visual_tests(t_visual *parse);
 
+
+void				print_status(t_window *window, t_rend *render, int len);
 
 #endif

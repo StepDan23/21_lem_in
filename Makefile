@@ -9,6 +9,7 @@ clear:
 v:
 	gcc ./visu/visu_main.c ./visu/visu_init.c ./visu/visu_load.c ./visu/visu_render.c \
 	libft/libft.a ./visu/visual_parsing.c ./visu/visual_parsing_inits.c ./visu/visual_parsing_collect_data.c \
+	./visu/visu_print.c \
 	-I ~/Library/Frameworks/SDL2.framework/Versions/A/Headers \
 	-I ~/Library/Frameworks/SDL2_image.framework/Versions/A/Headers \
 	-I ~/Library/Frameworks/SDL2_ttf.framework/Versions/A/Headers \

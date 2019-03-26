@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visu_load.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 14:15:11 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/26 19:44:10 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/26 11:45:04 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static void		box_names_on_back(SDL_Surface *back, SDL_Surface *box,
 	surf_scale(&box, &box_rect, MAP_SCALE);
 	while (nodes)
 	{
-		ft_printf("MAP COORDS = %d|%d\n", MAP_COORDS[nodes - 1][0], MAP_COORDS[nodes - 1][1]);
 		srs_rect.x = MAP_COORDS[nodes - 1][0] * MAP_SCALE - box_rect.w / 2;
 		srs_rect.y = MAP_COORDS[nodes - 1][1] * MAP_SCALE - box_rect.h / 2;
 		SDL_BlitSurface(box, &box_rect, back, &srs_rect);
