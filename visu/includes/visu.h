@@ -6,7 +6,7 @@
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:39:31 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/25 16:32:52 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/26 14:45:06 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,12 @@
 # define ANT_HEIGHT 180
 # define BOX_WIDTH 188
 # define BOX_HEIGHT 142
+# define F_STAT 25
 
 # include <SDL2_gfxPrimitives.h>
 # include <SDL.h>
 # include <SDL_image.h>
 # include <SDL_ttf.h>
-// #include "SDL_framerate.h"
-// #include "SDL_gfxBlitFunc.h"
-// #include "SDL_gfxPrimitives_font.h"
-// #include "SDL_imageFilter.h"
-// #include "SDL_rotozoom.h"  
 # include "../../libft/includes/libft.h"
 # include <stdlib.h>
 # include <math.h>
@@ -37,18 +33,18 @@ typedef struct		s_window
 	SDL_Window		*window;
 	SDL_Renderer	*window_render;
 	SDL_Texture		*background;
-	SDL_Texture		*tubes;
 	SDL_Texture		*ant;
-	TTF_Font 		*font;
+	TTF_Font		*f_names;
+	TTF_Font		*f_status;
 	char			quit;
 }					t_window;
 
 # define WIN_WIN	(window->window)
 # define WIN_REND	(window->window_render)
 # define WIN_BACK	(window->background)
-# define WIN_TUBES	(window->tubes)
 # define WIN_ANT	(window->ant)
-# define WIN_FONT	(window->font)
+# define FONT_NAME	(window->f_names)
+# define FONT_STAT	(window->f_status)
 # define WIN_QUIT	(window->quit)
 
 typedef struct		s_prop
@@ -68,39 +64,46 @@ typedef struct		s_prop
 
 typedef struct		s_move
 {
-	int				dx;
-	int				xy;
+	int				x;
+	int				y;
+	float			dx;
+	float			dy;
 	int				angle;
 }					t_move;
-
 
 typedef struct		s_rend
 {
 	int				ants_start;
 	int				ants_end;
 	int				ants_count;
-	int				frame;
+	int				frame_current;
 	int				frame_limit;
 	int				**states;
-	int				cur_state;
+	int				current_state;
+	int				last_state;
+	int				pos_start;
+	int				pos_end;
 	t_move			*moves;
 }					t_rend;
 
-# define REN_A_ST	(render->ants_start)
-# define REN_A_END	(render->ants_end)
-# define REN_A_CO	(render->ants_count)
-# define REN_FRAME	(render->frame)
-# define REN_LIMIT	(render->frame_limit)
-# define REN_ST		(render->states)
-# define REN_ST_CUR	(render->cur_state)
-# define REN_MOVE	(render->moves)
+# define ANTS_START	(render->ants_start)
+# define ANTS_END	(render->ants_end)
+# define ANTS_COU	(render->ants_count)
+# define FR_CUR		(render->frame_current)
+# define FR_LIMIT	(render->frame_limit)
+# define STATES		(render->states)
+# define ST_CUR		(render->current_state)
+# define ST_LAST	(render->last_state)
+# define POS_START	(render->pos_start)
+# define POS_END	(render->pos_end)
+# define T_MOVE		(render->moves)
 
-t_window		*window_init(void);
-t_prop			*prop_init(t_window *window);
-t_rend			*rend_init(t_window *window, t_prop *map);
+t_window			*window_init(void);
+t_prop				*prop_init(t_window *window);
+t_rend				*rend_init(t_window *window, t_prop *map);
 
-int			load_files(t_window *window, t_prop *map);
-void		window_close(t_window *window);
-
+int					load_files(t_window *window, t_prop *map);
+void				window_close(t_window *window);
+void				frame_render(t_window *window, t_prop *map, t_rend *render);
 
 #endif

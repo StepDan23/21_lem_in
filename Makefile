@@ -10,7 +10,8 @@ clear:
 	rm -rf visual
 
 v:
-	gcc ./visu/ft_vi_main.c ./visu/visu_init.c ./visu/visu_load.c libft/libft.a \
+	gcc ./visu/visu_main.c ./visu/visu_init.c ./visu/visu_load.c ./visu/visu_render.c \
+	libft/libft.a \
 	-I ~/Library/Frameworks/SDL2.framework/Versions/A/Headers \
 	-I ~/Library/Frameworks/SDL2_image.framework/Versions/A/Headers \
 	-I ~/Library/Frameworks/SDL2_ttf.framework/Versions/A/Headers \

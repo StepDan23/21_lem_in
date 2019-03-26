@@ -6,7 +6,7 @@
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 19:01:47 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/25 19:31:47 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/26 14:50:47 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_prop			*prop_init(t_window *window)
 
 	if (!(map = (t_prop*)malloc(sizeof(t_prop))))
 		return (0);
-	MAP_SCALE = 0.3;
+	MAP_SCALE = 1;
 	MAP_NODE_C = 7;
 	MAP_COORDS = (int**)malloc(sizeof(int*) * 7);
 	int i = 0;
@@ -96,13 +96,44 @@ t_rend			*rend_init(t_window *window, t_prop *map)
 
 	if (!(render = (t_rend*)malloc(sizeof(t_rend))))
 		return (0);
-	REN_A_END = 0;
-	REN_A_CO = 1;
-	REN_A_ST = REN_A_CO;
-	REN_FRAME = 0;
-	REN_LIMIT = 1000;
-	REN_ST = (int**)malloc(sizeof(int*) * REN_A_CO);
-	REN_ST_CUR = 0;
-	REN_MOVE = (t_move*)malloc(sizeof(t_move) * REN_A_CO);
+	ANTS_END = 0;
+	ANTS_COU = 4;
+	ANTS_START = ANTS_COU;
+	FR_CUR = 0;
+	FR_LIMIT = 100;
+	ST_CUR = 0;
+	ST_LAST = 3;
+	POS_START = 0;
+	POS_END = 6;
+	STATES = (int**)malloc(sizeof(int*) * ANTS_COU);
+	int i = 0;
+	int stages_count = 4;
+	while (i < ANTS_COU)
+		STATES[i++] = (int*)malloc(sizeof(int) * stages_count);
+	STATES[0][0] = 1;
+	STATES[0][1] = 2;
+	STATES[0][2] = 5;
+	STATES[0][3] = -1;
+	STATES[1][0] = 3;
+	STATES[1][1] = 6;
+	STATES[1][2] = 6;
+	STATES[1][3] = 2;
+	STATES[2][0] = 4;
+	STATES[2][1] = -1;
+	STATES[2][2] = -1;
+	STATES[2][3] = 6;
+	STATES[3][0] = 6;
+	STATES[3][1] = -1;
+	STATES[3][2] = -1;
+	STATES[3][3] = -1;
+	T_MOVE = (t_move*)malloc(sizeof(t_move) * ANTS_COU);
+	T_MOVE[0].x = MAP_COORDS[POS_START][0];
+	T_MOVE[0].y = MAP_COORDS[POS_START][1];
+	T_MOVE[1].x = MAP_COORDS[POS_START][0];
+	T_MOVE[1].y = MAP_COORDS[POS_START][1];
+	T_MOVE[2].x = MAP_COORDS[POS_START][0];
+	T_MOVE[2].y = MAP_COORDS[POS_START][1];
+	T_MOVE[3].x = MAP_COORDS[POS_START][0];
+	T_MOVE[3].y = MAP_COORDS[POS_START][1];
 	return (render);
 }
