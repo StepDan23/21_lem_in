@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ant_path.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:38:55 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/24 17:38:12 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/27 15:37:01 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "./includes/lem_in.h"
 #include <unistd.h>
 
 /*
@@ -75,7 +75,7 @@ void	ft_lemmin_routine(t_routes *solved, int **zone, int k)
 /*
 ** k - is num of route.
 */
-void	ft_lemmin_moves(t_routes *solved, int i, int k, int num_of_ant_in_tube)
+void	ft_lemmin_moves(t_routes *solved, int k, int num_of_ant_in_tube)
 {
 	int	**zone;
 

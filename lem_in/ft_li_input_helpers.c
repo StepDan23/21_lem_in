@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_li_input_helpers.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 21:13:34 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/24 18:01:38 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/27 14:05:39 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "./includes/lem_in.h"
 #include <stdlib.h>
 
 char		ft_show_error_msg(void)

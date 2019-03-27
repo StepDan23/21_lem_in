@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_li_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 13:31:55 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/24 18:45:39 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/27 14:05:46 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "./includes/lem_in.h"
 #include <stdlib.h>
 #include <unistd.h>
 

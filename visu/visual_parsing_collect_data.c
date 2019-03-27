@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visual_parsing_collect_data.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 18:11:08 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/26 18:38:24 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/27 11:48:32 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ void		ft_li_start(t_visual *parse, char *line, int *j)
 	NAME[SIZE] = ft_strdup(arr[0]);
 	COORD[SIZE][0] = ft_atoi(arr[1]);
 	COORD[SIZE][1] = ft_atoi(arr[2]);
-	(COORD[SIZE][0] > Y_MAX) ? Y_MAX = COORD[SIZE][0] : 0;
-	(COORD[SIZE][0] < Y_MIN) ? Y_MIN = COORD[SIZE][0] : 0;
-	(COORD[SIZE][1] > X_MAX) ? X_MAX = COORD[SIZE][1] : 0;
-	(COORD[SIZE][1] < X_MIN) ? X_MIN = COORD[SIZE][1] : 0;
+	(COORD[SIZE][1] > Y_MAX) ? Y_MAX = COORD[SIZE][1] : 0;
+	(COORD[SIZE][1] < Y_MIN) ? Y_MIN = COORD[SIZE][1] : 0;
+	(COORD[SIZE][0] > X_MAX) ? X_MAX = COORD[SIZE][0] : 0;
+	(COORD[SIZE][0] < X_MIN) ? X_MIN = COORD[SIZE][0] : 0;
 	START = SIZE;
 	SIZE = SIZE + 1;
 	ft_li_free_char_arr(arr, i);
@@ -47,10 +47,10 @@ void		ft_li_end(t_visual *parse, char *line, int *j)
 	NAME[SIZE] = ft_strdup(arr[0]);
 	COORD[SIZE][0] = ft_atoi(arr[1]);
 	COORD[SIZE][1] = ft_atoi(arr[2]);
-	(COORD[SIZE][0] > Y_MAX) ? Y_MAX = COORD[SIZE][0] : 0;
-	(COORD[SIZE][0] < Y_MIN) ? Y_MIN = COORD[SIZE][0] : 0;
-	(COORD[SIZE][1] > X_MAX) ? X_MAX = COORD[SIZE][1] : 0;
-	(COORD[SIZE][1] < X_MIN) ? X_MIN = COORD[SIZE][1] : 0;
+	(COORD[SIZE][1] > Y_MAX) ? Y_MAX = COORD[SIZE][1] : 0;
+	(COORD[SIZE][1] < Y_MIN) ? Y_MIN = COORD[SIZE][1] : 0;
+	(COORD[SIZE][0] > X_MAX) ? X_MAX = COORD[SIZE][0] : 0;
+	(COORD[SIZE][0] < X_MIN) ? X_MIN = COORD[SIZE][0] : 0;
 	END = SIZE;
 	SIZE++;
 	ft_li_free_char_arr(arr, i);
@@ -73,10 +73,10 @@ void		ft_add_node(t_visual *parse, char *line, int *j, int i)
 	NAME[SIZE] = ft_strdup(arr[0]);
 	COORD[SIZE][0] = ft_atoi(arr[1]);
 	COORD[SIZE][1] = ft_atoi(arr[2]);
-	(COORD[SIZE][0] > Y_MAX) ? Y_MAX = COORD[SIZE][0] : 0;
-	(COORD[SIZE][0] < Y_MIN) ? Y_MIN = COORD[SIZE][0] : 0;
-	(COORD[SIZE][1] > X_MAX) ? X_MAX = COORD[SIZE][1] : 0;
-	(COORD[SIZE][1] < X_MIN) ? X_MIN = COORD[SIZE][1] : 0;
+	(COORD[SIZE][1] > Y_MAX) ? Y_MAX = COORD[SIZE][1] : 0;
+	(COORD[SIZE][1] < Y_MIN) ? Y_MIN = COORD[SIZE][1] : 0;
+	(COORD[SIZE][0] > X_MAX) ? X_MAX = COORD[SIZE][0] : 0;
+	(COORD[SIZE][0] < X_MIN) ? X_MIN = COORD[SIZE][0] : 0;
 	SIZE++;
 	ft_li_free_char_arr(arr, i);
 	*j = 1;

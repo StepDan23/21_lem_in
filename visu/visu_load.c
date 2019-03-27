@@ -6,7 +6,7 @@
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 14:15:11 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/26 11:45:04 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/27 13:42:34 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ static void		box_names_on_back(SDL_Surface *back, SDL_Surface *box,
 
 	nodes = MAP_NODE_C;
 	box_rect = (SDL_Rect){0, 0, BOX_WIDTH, BOX_HEIGHT};
-	surf_scale(&box, &box_rect, MAP_SCALE);
+	surf_scale(&box, &box_rect, SCALE_ANT);
 	while (nodes)
 	{
-		srs_rect.x = MAP_COORDS[nodes - 1][0] * MAP_SCALE - box_rect.w / 2;
-		srs_rect.y = MAP_COORDS[nodes - 1][1] * MAP_SCALE - box_rect.h / 2;
+		srs_rect.x = MAP_COORDS[nodes - 1][0] - box_rect.w / 2;
+		srs_rect.y = MAP_COORDS[nodes - 1][1] - box_rect.h / 2;
 		SDL_BlitSurface(box, &box_rect, back, &srs_rect);
 		text = TTF_RenderText_Blended(FONT_NAME, MAP_NAMES[nodes - 1],
 											(SDL_Color){255, 255, 255, 200});
@@ -67,7 +67,6 @@ static void		tubes_on_back(t_window *window, t_prop *map,
 	nodes = MAP_NODE_C - 1;
 	SDL_SetRenderTarget(WIN_REND, WIN_BACK);
 	SDL_RenderCopy(WIN_REND, text_back, NULL, NULL);
-	SDL_RenderSetScale(WIN_REND, MAP_SCALE, MAP_SCALE);
 	while (nodes >= 0)
 	{
 		i = 0;
@@ -94,7 +93,7 @@ int				load_files(t_window *window, t_prop *map)
 	surf_back = SDL_LoadBMP("visu/img/background.bmp");
 	box = IMG_Load("visu/img/box.png");
 	surf_ant = IMG_Load("visu/img/foo.png");
-	FONT_NAME = TTF_OpenFont("visu/fonts/Aller_BdIt.ttf", 40 * MAP_SCALE);
+	FONT_NAME = TTF_OpenFont("visu/fonts/Aller_BdIt.ttf", 40 * SCALE_ANT);
 	FONT_STAT = TTF_OpenFont("visu/fonts/Aller_BdIt.ttf", F_STAT);
 	if (!surf_back || !box || !surf_ant || !FONT_NAME || !FONT_STAT)
 		return (ft_printf("Load_Error: %s\n", SDL_GetError()));
@@ -109,5 +108,6 @@ int				load_files(t_window *window, t_prop *map)
 	SDL_DestroyTexture(text_back);
 	SDL_FreeSurface(surf_back);
 	SDL_FreeSurface(surf_ant);
+	ft_printf("EXIT FROM LOAD\n");
 	return (0);
 }

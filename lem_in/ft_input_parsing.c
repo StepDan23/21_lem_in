@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_input_parsing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/23 13:28:05 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/24 18:22:22 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/27 14:05:40 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "./includes/lem_in.h"
 
 void		ft_ant_count(t_lem_in *input, char *line, int *j)
 {

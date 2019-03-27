@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visu_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 19:01:47 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/26 19:50:15 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/27 15:43:54 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,28 +42,26 @@ t_window		*window_init(void)
 t_prop			*prop_init(t_window *window, t_visual *parse)
 {
 	t_prop		*map;
+	int			i;
 
 	if (!(map = (t_prop*)malloc(sizeof(t_prop))))
 		return (0);
-	if (X_RAT < 1.0 || Y_RAT < 1.0)
-		MAP_SCALE = (X_RAT < Y_RAT) ? (X_RAT) : (Y_RAT);
-	else
-	{
-		if (X_RAT > 2.0 || Y_RAT > 2.0)
-			MAP_SCALE =1.5;
-		else
-			MAP_SCALE = (X_RAT > Y_RAT) ? (X_RAT) : (Y_RAT);
-	}
+	SCALE_ANT = 0.5;
 	MAP_NODE_C = SIZE;
 	MAP_MATRIX = MATRIX;
 	MAP_COORDS = COORD;
+	i = -1;
+	while (++i < MAP_NODE_C)
+	{
+		MAP_COORDS[i][0] = MAP_COORDS[i][0] * X_RAT - X_MIN * 0.4 * X_RAT;
+		MAP_COORDS[i][1] = MAP_COORDS[i][1] * Y_RAT - Y_MIN * 0.4 * Y_RAT;
+	}
 	MAP_NAMES = NAME;
-
 	ft_printf("EXIT FROM PROP\n");
 	return (map);
 }
 
-t_rend			*rend_init(t_window *window, t_prop *map, t_visual *parse)
+t_rend			*rend_init(t_prop *map, t_visual *parse)
 {
 	t_rend	*render;
 	int		i;

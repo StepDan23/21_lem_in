@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 13:32:31 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/24 18:01:36 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/27 15:37:30 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
-# include "libft.h"
+# include "../../libft/includes/libft.h"
 # include <stdlib.h>
 
 typedef struct		s_lem_in
@@ -93,7 +93,7 @@ void				ft_node(t_lem_in *input, char *line, int *j, int i);
 int					ft_place_node_in_arr(t_lem_in *input, char *str);
 int					ft_num_isdigit(char *num);
 t_lem_in			*ft_input_init(void);
-void				ft_lemmin_moves(t_routes *solved, int i, int k, int n);
+void				ft_lemmin_moves(t_routes *solved, int k, int n);
 
 /*
 ** ft_li_routes_helpers.c
