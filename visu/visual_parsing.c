@@ -12,6 +12,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "./includes/visu.h"
 
 void		ft_visual_tests(t_visual *parse)
@@ -39,9 +40,36 @@ void		ft_visual_tests(t_visual *parse)
 	ft_printf("X_MAX = %d, Y_MAX = %d\n", X_MAX, Y_MAX);
 	ft_printf("X_MIN = %d, Y_MIN = %d\n", X_MIN, Y_MIN);
 	ft_printf("=========================out tests=======================\n");
-
 }
 
+void		ft_shortest_distance(t_visual *parse, int i, int j, double dist)
+{
+	while (i < SIZE)
+	{
+		j = i + 1;
+		while (j < SIZE)
+		{
+			dist = (COORD[i][1] - COORD[j][1]) ^ 2 +\
+			(COORD[i][0] - COORD[j][0]) ^ 2;
+			if (dist < SH_DIST)
+			{
+				SH_DIST = dist;
+				SH_DIST_FIRST = i;
+				SH_DIST_SECOND = j;
+			}
+			if (dist > BIG_DIST)
+			{
+				BIG_DIST = dist;
+				BIG_DIST_FIRST = i;
+				BIG_DIST_SECOND = j;
+			}
+			j++;
+		}
+		i++;
+	}
+	SH_DIST = sqrt(SH_DIST);
+	BIG_DIST = sqrt(BIG_DIST);
+}
 
 int			ft_place_node_in_arr(t_visual *parse, char *str)
 {
@@ -111,7 +139,7 @@ t_visual		*ft_parse_income_from_lem_in(void)
 	(j) ? (free(line)) : 0;
 	X_RAT = 1200.0 / (X_MAX - X_MIN);
 	Y_RAT = 900.0 / (Y_MAX - Y_MIN);
-
+	ft_shortest_distance(parse, 0, 0, 0.0);
 	ft_visual_tests(parse);
 
 	return (parse);

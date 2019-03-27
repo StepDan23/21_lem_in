@@ -36,6 +36,8 @@ t_visual	*ft_init_parse(void)
 	Y_MIN = 2000000000;
 	ANT_MOVE = NULL;
 	STEPS = 0;
+	SH_DIST = 100000000;
+	BIG_DIST = 0;
 	return (parse);
 }
 

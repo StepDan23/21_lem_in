@@ -116,6 +116,12 @@ typedef struct		s_visual
 	int				ant_count;
 	int				**ant_moves;
 	int				steps;
+	double			shortest_dist;
+	int				shortest_first;
+	int				shortest_second;
+	double			biggest_dist;
+	int				biggest_first;
+	int				biggest_second;
 }					t_visual;
 
 # define NAME (parse->names)
@@ -133,6 +139,12 @@ typedef struct		s_visual
 # define ANT_C (parse->ant_count)
 # define ANT_MOVE (parse->ant_moves)
 # define STEPS (parse->steps)
+# define SH_DIST (parse->shortest_dist)
+# define SH_DIST_FIRST (parse->shortest_first)
+# define SH_DIST_SECOND (parse->shortest_second)
+# define BIG_DIST (parse->biggest_dist)
+# define BIG_DIST_FIRST (parse->biggest_first)
+# define BIG_DIST_SECOND (parse->biggest_second)
 
 t_visual			*ft_init_parse(void);
 void				ft_init_matrix(t_visual *parse);
