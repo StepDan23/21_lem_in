@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visual_parsing.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/23 14:23:22 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/26 19:27:22 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/27 16:06:22 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,8 +137,8 @@ t_visual		*ft_parse_income_from_lem_in(void)
 		free(line);
 	}
 	(j) ? (free(line)) : 0;
-	X_RAT = 1200.0 / (X_MAX - X_MIN);
-	Y_RAT = 900.0 / (Y_MAX - Y_MIN);
+	X_RAT = 1100.0 / X_MAX;
+	Y_RAT = 850.0 / Y_MAX;
 	ft_shortest_distance(parse, 0, 0, 0.0);
 	ft_visual_tests(parse);
 

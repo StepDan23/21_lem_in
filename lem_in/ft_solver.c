@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_solver.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 21:34:27 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/24 18:45:55 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/27 15:37:55 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "./includes/lem_in.h"
 #include <stdlib.h>
 
 void	ft_go_further(t_lem_in *input)
@@ -82,7 +82,7 @@ void	ft_route_all_ants(t_routes *solved, int i)
 	i = -1;
 	while (++i < ROU_NUM_WAYS)
 		ROU_ANT_LEFT[i] = ROU_ANT_NUM[i];
-	ft_lemmin_moves(solved, 0, 0, 1);
+	ft_lemmin_moves(solved, 0, 1);
 	free(ROU_ANT_FIN);
 	free(ROU_ANT_OFFSET);
 	free(ROU_ANT_LEFT);

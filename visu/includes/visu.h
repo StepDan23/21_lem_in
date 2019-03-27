@@ -6,7 +6,7 @@
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:39:31 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/26 20:03:22 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/27 16:26:07 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct		s_window
 	TTF_Font		*f_names;
 	TTF_Font		*f_status;
 	char			quit;
+	float			scale_ant;
 }					t_window;
 
 # define WIN_WIN	(window->window)
@@ -46,6 +47,7 @@ typedef struct		s_window
 # define FONT_NAME	(window->f_names)
 # define FONT_STAT	(window->f_status)
 # define WIN_QUIT	(window->quit)
+# define SCALE_ANT	(window->scale_ant)
 
 typedef struct		s_move
 {
@@ -58,14 +60,12 @@ typedef struct		s_move
 
 typedef struct		s_prop
 {
-	float			scale;
 	int				nodes_count;
 	char			**matrix_adjastment;
 	int				**nod_coord;
 	char			**nod_names;
 }					t_prop;
 
-# define MAP_SCALE	(map->scale)
 # define MAP_NODE_C	(map->nodes_count)
 # define MAP_MATRIX	(map->matrix_adjastment)
 # define MAP_COORDS	(map->nod_coord)
@@ -74,15 +74,15 @@ typedef struct		s_prop
 typedef struct		s_rend
 {
 	int				ants_start;
-	int				ants_end; 
-	int				ants_count;// yours
+	int				ants_end;
+	int				ants_count;
 	int				frame_current;
 	int				frame_limit;
-	int				**states; //new matrix
+	int				**states;
 	int				current_state;
 	int				last_state;
-	int				pos_start;   // start end
-	int				pos_end;   // start end
+	int				pos_start;
+	int				pos_end;
 	t_move			*moves;
 }					t_rend;
 
@@ -164,14 +164,15 @@ t_visual			*ft_parse_income_from_lem_in(void);
 
 t_window			*window_init(void);
 t_prop				*prop_init(t_window *window, t_visual *parse);
-t_rend				*rend_init(t_window *window, t_prop *map, t_visual *parse);
+t_rend				*rend_init(t_prop *map, t_visual *parse);
 
 int					load_files(t_window *window, t_prop *map);
-void				window_close(t_window *window);
-void				frame_render(t_window *window, t_prop *map, t_rend *render);
-void				ft_visual_tests(t_visual *parse);
 
+void				frame_render(t_window *window, t_prop *map, t_rend *render);
 
 void				print_status(t_window *window, t_rend *render, int len);
 
+void				win_events(t_window *window, t_prop *map, t_rend *render);
+
+void				ft_visual_tests(t_visual *parse);
 #endif

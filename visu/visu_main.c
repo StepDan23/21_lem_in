@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   visu_main.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:16:13 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/26 19:30:23 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/27 16:13:59 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/visu.h"
 
-t_visual	*parse;
-
-void		window_close(t_window *window)
+static void		window_close(t_window *window)
 {
 	if (WIN_REND != NULL)
 		SDL_DestroyRenderer(WIN_REND);
@@ -37,32 +35,23 @@ void		window_close(t_window *window)
 	SDL_Quit();
 }
 
-#include <stdio.h>
-int			main(void)
+int				main(void)
 {
 	t_window	*window;
 	t_prop		*map;
 	t_rend		*render;
-	SDL_Event	e;
+	t_visual	*parse;
 
 	parse = ft_parse_income_from_lem_in();
 	ft_visual_tests(parse);
 	if (!(window = window_init()) ||
 			!(map = prop_init(window, parse)) ||
-				!(render = rend_init(window, map, parse)) || (load_files(window, map)))
+				!(render = rend_init(map, parse)) ||
+											(load_files(window, map)))
 		return (0);
 	while (!WIN_QUIT)
 	{
-		while (SDL_PollEvent(&e) != 0)
-		{
-			if (e.type == SDL_QUIT)
-				WIN_QUIT = 1;
-			if (e.type == SDL_KEYDOWN)
-			{
-				if (e.key.keysym.sym == SDLK_ESCAPE)
-					WIN_QUIT = 1;
-			}
-		}
+		win_events(window, map, render);
 		SDL_Delay(10);
 		frame_render(window, map, render);
 	}

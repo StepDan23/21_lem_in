@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_li_routes_helpers.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/23 13:25:01 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/23 13:25:02 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/27 14:05:49 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "./includes/lem_in.h"
 
 t_routes	*rou_init(t_lem_in *input)
 {

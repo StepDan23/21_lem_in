@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_li_routes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 13:55:58 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/23 13:26:53 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/27 14:05:53 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "./includes/lem_in.h"
 
 static void		lem_del_node(t_lem_in *input, int *route)
 {

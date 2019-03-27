@@ -6,7 +6,7 @@
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 11:09:44 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/26 20:13:42 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/27 13:44:09 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ static void		render_ant_pos(t_window *window, t_move pos, int frame, int fl)
 		clip_area.y = 1238;
 	else
 		clip_area.y = 126;
-	render_area = (SDL_Rect){pos.x - ANT_WIDTH / 2,
-					pos.y - ANT_HEIGHT / 2, ANT_WIDTH, ANT_HEIGHT};
+	render_area = (SDL_Rect){pos.x - ANT_WIDTH * SCALE_ANT / 2,
+								pos.y - ANT_HEIGHT * SCALE_ANT / 2,
+							ANT_WIDTH * SCALE_ANT, ANT_HEIGHT * SCALE_ANT};
 	SDL_RenderCopyEx(WIN_REND, WIN_ANT, &clip_area,
 						&render_area, angle, NULL, SDL_FLIP_NONE);
 }
@@ -65,7 +66,7 @@ static void		render_start_end(t_window *window, t_prop *map, t_rend *render)
 	int		ant_num;
 
 	ant_num = -1;
-	if (FR_CUR == 0.2 * FR_LIMIT + 1)
+	if (FR_CUR == (int)(0.2 * FR_LIMIT))
 	{
 		ANTS_START = 0;
 		while (++ant_num < ANTS_COU)
@@ -77,8 +78,8 @@ static void		render_start_end(t_window *window, t_prop *map, t_rend *render)
 	{
 		ANTS_END = 0;
 		while (++ant_num < ANTS_COU)
-			if (T_MOVE[ant_num].x / MAP_COORDS[POS_END][0] > 0.92
-					&& T_MOVE[ant_num].y / MAP_COORDS[POS_END][1] > 0.92)
+			if (T_MOVE[ant_num].x / MAP_COORDS[POS_END][0] > 0.93
+					&& T_MOVE[ant_num].y / MAP_COORDS[POS_END][1] > 0.93)
 				ANTS_END++;
 	}
 	if (ANTS_START != 0)
@@ -122,7 +123,6 @@ void			frame_render(t_window *window, t_prop *map, t_rend *render)
 	SDL_RenderSetScale(WIN_REND, 1, 1);
 	SDL_RenderCopy(WIN_REND, WIN_BACK, NULL, NULL);
 	print_status(window, render, 1);
-	SDL_RenderSetScale(WIN_REND, MAP_SCALE, MAP_SCALE);
 	render_ants(window, map, render);
 	SDL_RenderPresent(WIN_REND);
 	FR_CUR += (FR_CUR == FR_LIMIT) ? -FR_LIMIT : 1;
