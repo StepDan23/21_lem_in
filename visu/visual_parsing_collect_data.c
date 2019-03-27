@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visual_parsing_collect_data.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 18:11:08 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/27 11:48:32 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/27 23:16:58 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void		ft_li_end(t_visual *parse, char *line, int *j)
 	*j = 1;
 }
 
-void		ft_add_node(t_visual *parse, char *line, int *j, int i)
+void		ft_node(t_visual *parse, char *line, int *j, int i)
 {
 	char	**arr;
 
@@ -67,7 +67,7 @@ void		ft_add_node(t_visual *parse, char *line, int *j, int i)
 	if (i == 1)
 	{
 		ft_li_free_char_arr(arr, i);
-		ft_add_tube(parse, line, j);
+		ft_tube(parse, line, j);
 		return ;
 	}
 	NAME[SIZE] = ft_strdup(arr[0]);
@@ -82,7 +82,7 @@ void		ft_add_node(t_visual *parse, char *line, int *j, int i)
 	*j = 1;
 }
 
-void		ft_add_tube(t_visual *parse, char *line, int *j)
+void		ft_tube(t_visual *parse, char *line, int *j)
 {
 	char	**arr;
 	int		i;

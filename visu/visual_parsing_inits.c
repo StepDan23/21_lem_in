@@ -6,35 +6,35 @@
 /*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 17:44:29 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/26 18:38:29 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/27 22:24:18 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/visu.h"
 #include <stdlib.h>
 
-t_visual	*ft_init_parse(void)
+t_visual	*ft_init_parse(int i)
 {
 	t_visual	*parse;
-	int			i;
 
-	i = 0;
 	parse = malloc(sizeof(t_visual));
-	if (!parse)
-		exit(ft_show_error());
+	(!parse) ? exit(ft_show_error()) : 0;
 	NAME = malloc(8 * 10000);
 	COORD = malloc(8 * 10000);
-	while (i < 10000)
-		COORD[i++] = (int *)malloc(8);
+	while (++i < 10000)
+	{
+		COORD[i] = (int *)malloc(8);
+		(!(COORD[i])) ? exit(ft_show_error()) : 0;
+	}
 	SIZE = 0;
 	X_RAT = 1;
 	Y_RAT = 1;
 	MATRIX = NULL;
+	ANT_MOVE = NULL;
 	X_MAX = -1;
 	Y_MAX = -1;
 	X_MIN = 2000000000;
 	Y_MIN = 2000000000;
-	ANT_MOVE = NULL;
 	STEPS = 0;
 	SH_DIST = 100000000.0;
 	BIG_DIST = 0.0;

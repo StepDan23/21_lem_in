@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visu_load.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 14:15:11 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/27 17:50:32 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/27 22:25:00 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,5 @@ int				load_files(t_window *window, t_prop *map)
 	SDL_DestroyTexture(text_back);
 	SDL_FreeSurface(surf_back);
 	SDL_FreeSurface(surf_ant);
-	ft_printf("EXIT FROM LOAD\n");
 	return (0);
 }

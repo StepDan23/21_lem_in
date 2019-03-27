@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visu_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 19:01:47 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/27 17:51:33 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/27 22:24:53 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ t_prop			*prop_init(t_window *window, t_visual *parse)
 		MAP_COORDS[i][1] = MAP_COORDS[i][1] * Y_RAT - Y_MIN * 0.4 * Y_RAT;
 	}
 	MAP_NAMES = NAME;
-	ft_printf("EXIT FROM PROP\n");
 	return (map);
 }
 
@@ -94,7 +93,6 @@ t_rend			*rend_init(t_prop *map, t_visual *parse)
 		i++;
 	}
 	ft_printf("START = %d END = %d\n", START, END);
-	ft_printf("EXIT FROM REND\n");
 
 	return (render);
 }

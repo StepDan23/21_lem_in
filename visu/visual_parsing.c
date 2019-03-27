@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visual_parsing.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/23 14:23:22 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/27 16:06:22 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/27 23:18:37 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,33 @@
 #include <math.h>
 #include "./includes/visu.h"
 
-void		ft_visual_tests(t_visual *parse)
-{
-	ft_printf("=========================in tests=======================\n");
-
-	ft_printf("SIZE = %d\nNAMES:\n", SIZE);
-	for (int i = 0; i < SIZE; i++)
-		ft_printf("%s ", NAME[i]);
-	ft_printf("\nCOORDS X|Y:\n");
-	for (int i = 0; i < SIZE; i++)
-		ft_printf("%d|%d ", COORD[i][0], COORD[i][1]);
-	ft_printf("\nX_RAT/Y_RAT:\n%f/%f\n", X_RAT, Y_RAT);
-	for (int i = 0; i < SIZE; i++)
-		ft_printf("%s\n", MATRIX[i]);
-	ft_printf("START = %d, END = %d \n", START, END);
-	ft_printf("ANT_COUNT = %d\n", ANT_C);
-	for (int i = 0; i < STEPS; i++)
-	{
-		for (int j = 0; j < ANT_C; j++)
-			ft_printf("%3d ", ANT_MOVE[i][j]);
-		ft_putchar('\n');
-	}
-	ft_printf("X_MAX = %d, Y_MAX = %d\n", X_MAX, Y_MAX);
-	ft_printf("X_MIN = %d, Y_MIN = %d\n", X_MIN, Y_MIN);
-	ft_printf("=========================out tests=======================\n");
-}
+/*
+** void		ft_visual_tests(t_visual *parse)
+** {
+** 	ft_printf("=========================in tests=======================\n");
+** 
+** 	ft_printf("SIZE = %d\nNAMES:\n", SIZE);
+** 	for (int i = 0; i < SIZE; i++)
+** 		ft_printf("%s ", NAME[i]);
+** 	ft_printf("\nCOORDS X|Y:\n");
+** 	for (int i = 0; i < SIZE; i++)
+** 		ft_printf("%d|%d ", COORD[i][0], COORD[i][1]);
+** 	ft_printf("\nX_RAT/Y_RAT:\n%f/%f\n", X_RAT, Y_RAT);
+** 	for (int i = 0; i < SIZE; i++)
+** 		ft_printf("%s\n", MATRIX[i]);
+** 	ft_printf("START = %d, END = %d \n", START, END);
+** 	ft_printf("ANT_COUNT = %d\n", ANT_C);
+** 	for (int i = 0; i < STEPS; i++)
+** 	{
+** 		for (int j = 0; j < ANT_C; j++)
+** 			ft_printf("%3d ", ANT_MOVE[i][j]);
+** 		ft_putchar('\n');
+** 	}
+** 	ft_printf("X_MAX = %d, Y_MAX = %d\n", X_MAX, Y_MAX);
+** 	ft_printf("X_MIN = %d, Y_MIN = %d\n", X_MIN, Y_MIN);
+** 	ft_printf("=========================out tests=======================\n");
+** }
+*/
 
 void		ft_shortest_distance(t_visual *parse, int i, int j, double dist)
 {
@@ -84,13 +86,16 @@ int			ft_place_node_in_arr(t_visual *parse, char *str)
 	return (-1);
 }
 
-void		ft_ant_count(t_visual *parse, char *line, int *j)
+void		ft_ant_count(t_visual *parse, char *line, int *j, int flag)
 {
 	int		res;
 
-	res = ft_atoi(line);
-	ANT_C = res;
-	*j = 1;
+	if (flag == 1)
+	{
+		res = ft_atoi(line);
+		ANT_C = res;
+		*j = 1;
+	}
 }
 
 
@@ -123,23 +128,23 @@ t_visual		*ft_parse_income_from_lem_in(void)
 	int			j;
 
 	j = 0;
-	parse = ft_init_parse();
+	parse = ft_init_parse(-1);
 	while (get_next_line(0, &line) > 0)
 	{
-		(line[0] != '#' && j >= 10 && j <= 20) ? (ft_add_tube(parse, line, &j)) : 0;
-		(line[0] != '#' && j > 0 && j < 10) ? (ft_add_node(parse, line, &j, 0)) : 0;
-		(j == 0) ? ft_ant_count(parse, line, &j) : 0;
+		(line[0] != '#' && j >= 10 && j <= 20) ? (ft_tube(parse, line, &j)) : 0;
+		(line[0] != '#' && j > 0 && j < 10) ? (ft_node(parse, line, &j, 0)) : 0;
+		(j == 0) ? ft_ant_count(parse, line, &j, 1) : 0;
 		(j & (1 << 14)) ? (ft_li_end(parse, line, &j)) : 0;
 		(j & (1 << 15)) ? (ft_li_start(parse, line, &j)) : 0;
-		(line[0] == '#' && j >= 0 && j < 10) ? (ft_li_comment(parse, line, &j)) : 0;
+		(line[0] == '#' && j >= 0 && j < 10) ?\
+		(ft_li_comment(parse, line, &j)) : 0;
 		(line[0] == 'L') ? ft_ant_move_parse(parse, line, &j) : 0;
 		free(line);
 	}
 	(j) ? (free(line)) : 0;
 	X_RAT = 1100.0 / X_MAX;
 	Y_RAT = 850.0 / Y_MAX;
+	(STEPS == 0) ? (exit (0)) : 0;
 	ft_shortest_distance(parse, 0, 0, 0.0);
-	ft_visual_tests(parse);
-
 	return (parse);
 }

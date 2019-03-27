@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visu.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:39:31 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/27 18:39:19 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/27 23:16:41 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,19 +146,19 @@ typedef struct		s_visual
 # define BIG_DIST_FIRST (parse->biggest_first)
 # define BIG_DIST_SECOND (parse->biggest_second)
 
-t_visual			*ft_init_parse(void);
+t_visual			*ft_init_parse(int i);
 void				ft_init_matrix(t_visual *parse);
 void				ft_init_steps(t_visual *parse);
 void				ft_li_free_char_arr(char **arr, int i);
 int					ft_show_error(void);
 void				ft_li_comment(t_visual *parse, char *line, int *j);
-void				ft_add_tube(t_visual *parse, char *line, int *j);
-void				ft_add_node(t_visual *parse, char *line, int *j, int i);
+void				ft_tube(t_visual *parse, char *line, int *j);
+void				ft_node(t_visual *parse, char *line, int *j, int i);
 void				ft_li_end(t_visual *parse, char *line, int *j);
 void				ft_li_start(t_visual *parse, char *line, int *j);
 int					ft_place_node_in_arr(t_visual *parse, char *str);
 void				ft_go_further(t_visual *parse);
-void				ft_ant_count(t_visual *parse, char *line, int *j);
+void				ft_ant_count(t_visual *parse, char *line, int *j, int f);
 void				ft_ant_move_parse(t_visual *parse, char *line, int *j);
 t_visual			*ft_parse_income_from_lem_in(void);
 

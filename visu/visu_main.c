@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visu_main.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:16:13 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/27 16:13:59 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/27 23:14:30 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int				main(void)
 	t_visual	*parse;
 
 	parse = ft_parse_income_from_lem_in();
-	ft_visual_tests(parse);
 	if (!(window = window_init()) ||
 			!(map = prop_init(window, parse)) ||
 				!(render = rend_init(map, parse)) ||
