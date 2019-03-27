@@ -49,8 +49,8 @@ void		ft_shortest_distance(t_visual *parse, int i, int j, double dist)
 		j = i + 1;
 		while (j < SIZE)
 		{
-			dist = (COORD[i][1] - COORD[j][1]) ^ 2 +\
-			(COORD[i][0] - COORD[j][0]) ^ 2;
+			dist = (double)((COORD[i][1] - COORD[j][1]) ^ 2 +\
+			(COORD[i][0] - COORD[j][0]) ^ 2);
 			if (dist < SH_DIST)
 			{
 				SH_DIST = dist;
