@@ -17,7 +17,6 @@
 
 void		ft_visual_tests(t_visual *parse)
 {
-
 	ft_printf("=========================in tests=======================\n");
 
 	ft_printf("SIZE = %d\nNAMES:\n", SIZE);
@@ -49,8 +48,8 @@ void		ft_shortest_distance(t_visual *parse, int i, int j, double dist)
 		j = i + 1;
 		while (j < SIZE)
 		{
-			dist = (double)((COORD[i][1] - COORD[j][1]) ^ 2 +\
-			(COORD[i][0] - COORD[j][0]) ^ 2);
+			dist = (double)(pow(COORD[i][1] - COORD[j][1], 2.0) +\
+			pow(COORD[i][0] - COORD[j][0], 2.0));
 			if (dist < SH_DIST)
 			{
 				SH_DIST = dist;
