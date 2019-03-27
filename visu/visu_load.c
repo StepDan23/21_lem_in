@@ -6,7 +6,7 @@
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 14:15:11 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/27 13:42:34 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/27 17:50:32 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void		tubes_on_back(t_window *window, t_prop *map,
 			if (MAP_MATRIX[nodes][i] == '1')
 				thickLineRGBA(WIN_REND,
 					MAP_COORDS[nodes][0], MAP_COORDS[nodes][1],
-						MAP_COORDS[i][0], MAP_COORDS[i][1], 6, 101, 67, 33, 40);
+						MAP_COORDS[i][0], MAP_COORDS[i][1], 6 * SCALE_ANT , 101, 67, 33, 40);
 			i++;
 		}
 		nodes--;

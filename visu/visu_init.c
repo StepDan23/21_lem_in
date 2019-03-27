@@ -6,7 +6,7 @@
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 19:01:47 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/27 15:43:54 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/27 17:51:33 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,17 @@ t_prop			*prop_init(t_window *window, t_visual *parse)
 {
 	t_prop		*map;
 	int			i;
+	double		sc_x;
 
 	if (!(map = (t_prop*)malloc(sizeof(t_prop))))
 		return (0);
-	SCALE_ANT = 0.5;
+	ft_printf("min dest %f\n", SH_DIST);
+	SCALE_ANT = (SH_DIST * Y_RAT) / BOX_HEIGHT;
+	sc_x = (SH_DIST * X_RAT) / BOX_WIDTH;
+	SCALE_ANT = (SCALE_ANT < sc_x) ? SCALE_ANT : sc_x;
+	SCALE_ANT = (SCALE_ANT < 0.2) ? 0.2 : SCALE_ANT;
+	SCALE_ANT = (SCALE_ANT > 1.0) ? 1.0 : SCALE_ANT;
+	ft_printf("scale----- dest %f\n", SCALE_ANT);
 	MAP_NODE_C = SIZE;
 	MAP_MATRIX = MATRIX;
 	MAP_COORDS = COORD;

@@ -6,7 +6,7 @@
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 11:09:44 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/27 13:44:09 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/27 18:39:43 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ void			frame_render(t_window *window, t_prop *map, t_rend *render)
 	SDL_RenderSetScale(WIN_REND, 1, 1);
 	SDL_RenderCopy(WIN_REND, WIN_BACK, NULL, NULL);
 	print_status(window, render, 1);
+	print_inst(window, render);
 	render_ants(window, map, render);
 	SDL_RenderPresent(WIN_REND);
 	FR_CUR += (FR_CUR == FR_LIMIT) ? -FR_LIMIT : 1;

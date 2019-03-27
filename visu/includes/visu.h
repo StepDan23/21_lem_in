@@ -6,7 +6,7 @@
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:39:31 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/27 16:26:07 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/27 18:39:19 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,7 @@ int					load_files(t_window *window, t_prop *map);
 void				frame_render(t_window *window, t_prop *map, t_rend *render);
 
 void				print_status(t_window *window, t_rend *render, int len);
+void				print_inst(t_window *window, t_rend *render);
 
 void				win_events(t_window *window, t_prop *map, t_rend *render);
 
