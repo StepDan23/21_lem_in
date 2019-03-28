@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_solver.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 21:34:27 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/27 15:37:55 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/28 16:09:11 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/lem_in.h"
 #include <stdlib.h>
+#include <unistd.h>
 
 void	ft_go_further(t_lem_in *input)
 {
@@ -82,9 +83,28 @@ void	ft_route_all_ants(t_routes *solved, int i)
 	i = -1;
 	while (++i < ROU_NUM_WAYS)
 		ROU_ANT_LEFT[i] = ROU_ANT_NUM[i];
+	write(1, "\n", 1);
 	ft_lemmin_moves(solved, 0, 1);
 	free(ROU_ANT_FIN);
 	free(ROU_ANT_OFFSET);
 	free(ROU_ANT_LEFT);
 	free(ROU_ANT_NUM);
+}
+
+/*
+** Проверяем, встречался ли узел с таким именем ранее
+*/
+
+int		ft_place_node_in_arr(t_lem_in *input, char *str)
+{
+	int	i;
+
+	i = 0;
+	while (i < INP_NODE_C)
+	{
+		if (!ft_strcmp(str, INP_NODES_NAMES[i]))
+			return (i);
+		i++;
+	}
+	return (-1);
 }

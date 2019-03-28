@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visual_parsing.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/23 14:23:22 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/28 13:37:50 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/28 16:13:02 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,17 +120,17 @@ void		ft_ant_move_parse(t_visual *parse, char *line)
 	STEPS++;
 }
 
-t_visual	*ft_parse_income_from_lem_in(void)
+t_visual	*ft_parse_income_from_lem_in(int j)
 {
 	char		*line;
 	t_visual	*parse;
-	int			j;
 
-	j = 0;
 	parse = ft_init_parse(-1);
 	while (get_next_line(0, &line) > 0)
 	{
-		(line[0] != '#' && j >= 10 && j <= 20) ? (ft_tube(parse, line, &j)) : 0;
+		(line[0] == '\0') ? (j = 11) : 0;
+		(line[0] != '#' && line[0] && j >= 10 && j <= 20) ?\
+		(ft_tube(parse, line, &j)) : 0;
 		(line[0] != '#' && j > 0 && j < 10) ? (ft_node(parse, line, &j, 0)) : 0;
 		(j == 0) ? ft_ant_count(parse, line, &j, 1) : 0;
 		(j & (1 << 14)) ? (ft_li_end(parse, line, &j)) : 0;

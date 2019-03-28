@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ant_path.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:38:55 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/28 13:50:57 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/28 16:21:41 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,23 +57,28 @@ int		ft_is_finished_all(int *start, int *end, int len)
 void	ft_lemmin_routine(t_routes *solved, int **zone, int k)
 {
 	int		i;
+	int		j;
 
 	i = (ROU_ANT_OFFSET[k] < ROU_SIZES[k])
 			? (ROU_ANT_OFFSET[k])++ : ROU_ANT_OFFSET[k];
 	(ROU_ANT_OFFSET[k] == ROU_SIZES[k]) ? ROU_ANT_FIN[k]++ : 0;
+	j = 0;
 	while (i > 0)
 	{
 		(ROU_ANT_OFFSET[k]) ? (zone[k][i] = zone[k][i - 1]) : 0;
 		if (i < ROU_SIZES[k] && zone[k][i])
 		{
+			(k + j != 0) ? write(1, " ", 1) : 0;
 			write(1, "L", 1);
 			ft_putnbr(zone[k][i]);
 			write(1, "-", 1);
 			ft_putstr(ROU_ARR[k][i]);
-			write(1, " ", 1);
+			j++;
 		}
 		i--;
 	}
+	if (ROU_ANT_LEFT[k] == 0)
+		zone[k][0] = 0;
 }
 
 /*
@@ -90,27 +95,20 @@ void	ft_lemmin_moves(t_routes *solved, int k, int num_of_ant_in_tube)
 		if (ROU_ANT_NUM[k] != ROU_ANT_FIN[k])
 		{
 			ft_lemmin_routine(solved, zone, k);
-			if (ROU_ANT_LEFT[k] == 0)
-				zone[k][0] = 0;
 			if (ROU_ANT_LEFT[k] > 0)
 			{
-				zone[k][0] = num_of_ant_in_tube;
-//ft_printf or another print function
+				(num_of_ant_in_tube != 1) ? write(1, " ", 1) : 0;
+				zone[k][0] = num_of_ant_in_tube++;
 				write(1, "L", 1);
 				ft_putnbr(zone[k][0]);
 				write(1, "-", 1);
 				ft_putstr(ROU_ARR[k][0]);
-				write(1, " ", 1);
-//ft_printf
-				(num_of_ant_in_tube)++;
 				ROU_ANT_LEFT[k]--;
 			}
 		}
-		k = (k + 1) % ROU_NUM_WAYS;
-		(k == 0) ? ft_putchar('\n') : 0;
+		((k = (k + 1) % ROU_NUM_WAYS) == 0) ? ft_putchar('\n') : 0;
 	}
 	(k != 0) ? ft_putchar('\n') : 0;
-//arr clean ?
 	while (--ROU_NUM_WAYS >= 0)
 		free(zone[ROU_NUM_WAYS]);
 	free(zone);

@@ -3,34 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_li_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 13:31:55 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/28 13:26:27 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/28 15:48:29 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/lem_in.h"
 #include <stdlib.h>
 #include <unistd.h>
-
-/*
-** Проверяем, встречался ли узел с таким именем ранее
-*/
-
-int			ft_place_node_in_arr(t_lem_in *input, char *str)
-{
-	int	i;
-
-	i = 0;
-	while (i < INP_NODE_C)
-	{
-		if (!ft_strcmp(str, INP_NODES_NAMES[i]))
-			return (i);
-		i++;
-	}
-	return (-1);
-}
 
 int			ft_stone_check(t_lem_in *input, char *str1, char *str2)
 {

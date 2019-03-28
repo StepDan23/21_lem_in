@@ -6,7 +6,7 @@
 /*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:16:13 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/27 23:14:30 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/28 16:12:06 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int				main(void)
 	t_rend		*render;
 	t_visual	*parse;
 
-	parse = ft_parse_income_from_lem_in();
+	parse = ft_parse_income_from_lem_in(0);
 	if (!(window = window_init()) ||
 			!(map = prop_init(window, parse)) ||
 				!(render = rend_init(map, parse)) ||

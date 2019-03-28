@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visu.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:39:31 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/28 13:43:07 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/28 16:12:03 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ int					ft_place_node_in_arr(t_visual *parse, char *str);
 void				ft_go_further(t_visual *parse);
 void				ft_ant_count(t_visual *parse, char *line, int *j, int f);
 void				ft_ant_move_parse(t_visual *parse, char *line);
-t_visual			*ft_parse_income_from_lem_in(void);
+t_visual			*ft_parse_income_from_lem_in(int j);
 
 /*
 ** visu_init.c
