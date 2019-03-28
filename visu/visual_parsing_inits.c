@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visual_parsing_inits.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 17:44:29 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/27 22:24:18 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/28 13:21:42 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void		ft_init_steps(t_visual *parse)
 	ANT_MOVE[i] = NULL;
 }
 
-int		ft_show_error(void)
+int			ft_show_error(void)
 {
 	ft_putstr_fd("ERROR\n", 2);
 	return (1);

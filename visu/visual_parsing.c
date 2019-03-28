@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visual_parsing.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/23 14:23:22 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/27 23:18:37 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/28 13:37:50 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** void		ft_visual_tests(t_visual *parse)
 ** {
 ** 	ft_printf("=========================in tests=======================\n");
-** 
+**
 ** 	ft_printf("SIZE = %d\nNAMES:\n", SIZE);
 ** 	for (int i = 0; i < SIZE; i++)
 ** 		ft_printf("%s ", NAME[i]);
@@ -98,8 +98,7 @@ void		ft_ant_count(t_visual *parse, char *line, int *j, int flag)
 	}
 }
 
-
-void		ft_ant_move_parse(t_visual *parse, char *line, int *j)
+void		ft_ant_move_parse(t_visual *parse, char *line)
 {
 	int		i;
 	int		k;
@@ -121,7 +120,7 @@ void		ft_ant_move_parse(t_visual *parse, char *line, int *j)
 	STEPS++;
 }
 
-t_visual		*ft_parse_income_from_lem_in(void)
+t_visual	*ft_parse_income_from_lem_in(void)
 {
 	char		*line;
 	t_visual	*parse;
@@ -137,14 +136,14 @@ t_visual		*ft_parse_income_from_lem_in(void)
 		(j & (1 << 14)) ? (ft_li_end(parse, line, &j)) : 0;
 		(j & (1 << 15)) ? (ft_li_start(parse, line, &j)) : 0;
 		(line[0] == '#' && j >= 0 && j < 10) ?\
-		(ft_li_comment(parse, line, &j)) : 0;
-		(line[0] == 'L') ? ft_ant_move_parse(parse, line, &j) : 0;
+		(ft_li_comment(line, &j)) : 0;
+		(line[0] == 'L') ? ft_ant_move_parse(parse, line) : 0;
 		free(line);
 	}
 	(j) ? (free(line)) : 0;
 	X_RAT = 1100.0 / X_MAX;
 	Y_RAT = 850.0 / Y_MAX;
-	(STEPS == 0) ? (exit (0)) : 0;
+	(STEPS == 0) ? (exit(0)) : 0;
 	ft_shortest_distance(parse, 0, 0, 0.0);
 	return (parse);
 }

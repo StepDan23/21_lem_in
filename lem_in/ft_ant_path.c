@@ -6,7 +6,7 @@
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:38:55 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/27 15:37:01 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/28 13:50:57 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 /*
 ** готовим массив для движения муравьев. размеры строк равны длине маршрутов
 */
+
 int		**ft_array_for_lemmin_moves(int rou_count, int *rou_sizes)
 {
 	int		**zone;
@@ -34,6 +35,7 @@ int		**ft_array_for_lemmin_moves(int rou_count, int *rou_sizes)
 /*
 ** проверка - остались ли незакрытые маршруты
 */
+
 int		ft_is_finished_all(int *start, int *end, int len)
 {
 	int i;
@@ -51,11 +53,13 @@ int		ft_is_finished_all(int *start, int *end, int len)
 /*
 ** перемещаем муравья и печатаем его движение на каждом шаге
 */
+
 void	ft_lemmin_routine(t_routes *solved, int **zone, int k)
 {
 	int		i;
 
-	i = (ROU_ANT_OFFSET[k] < ROU_SIZES[k]) ? (ROU_ANT_OFFSET[k])++ : ROU_ANT_OFFSET[k];
+	i = (ROU_ANT_OFFSET[k] < ROU_SIZES[k])
+			? (ROU_ANT_OFFSET[k])++ : ROU_ANT_OFFSET[k];
 	(ROU_ANT_OFFSET[k] == ROU_SIZES[k]) ? ROU_ANT_FIN[k]++ : 0;
 	while (i > 0)
 	{
@@ -75,6 +79,7 @@ void	ft_lemmin_routine(t_routes *solved, int **zone, int k)
 /*
 ** k - is num of route.
 */
+
 void	ft_lemmin_moves(t_routes *solved, int k, int num_of_ant_in_tube)
 {
 	int	**zone;
@@ -90,11 +95,13 @@ void	ft_lemmin_moves(t_routes *solved, int k, int num_of_ant_in_tube)
 			if (ROU_ANT_LEFT[k] > 0)
 			{
 				zone[k][0] = num_of_ant_in_tube;
+//ft_printf or another print function
 				write(1, "L", 1);
 				ft_putnbr(zone[k][0]);
 				write(1, "-", 1);
 				ft_putstr(ROU_ARR[k][0]);
 				write(1, " ", 1);
+//ft_printf
 				(num_of_ant_in_tube)++;
 				ROU_ANT_LEFT[k]--;
 			}
@@ -103,6 +110,7 @@ void	ft_lemmin_moves(t_routes *solved, int k, int num_of_ant_in_tube)
 		(k == 0) ? ft_putchar('\n') : 0;
 	}
 	(k != 0) ? ft_putchar('\n') : 0;
+//arr clean ?
 	while (--ROU_NUM_WAYS >= 0)
 		free(zone[ROU_NUM_WAYS]);
 	free(zone);

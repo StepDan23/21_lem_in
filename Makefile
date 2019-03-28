@@ -6,7 +6,7 @@
 #    By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/27 13:52:16 by mmcclure          #+#    #+#              #
-#    Updated: 2019/03/27 19:10:41 by mmcclure         ###   ########.fr        #
+#    Updated: 2019/03/28 13:31:37 by mmcclure         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,10 +45,10 @@ SRCS_VISU = $(addprefix $(VISU_DIR), $(SRCS_VISU_F))
 all: $(NAME1) $(NAME2)
 
 $(NAME1): $(LIB) $(LIB_GFX)
-	gcc $(SRCS_LEM) $(LIB) -o $(NAME1)
+	gcc $(SRCS_LEM) $(LIB) $(FLAGS) -o $(NAME1)
 
 $(NAME2): $(LIB) 
-	gcc $(SRCS_VISU) $(LIB) $(HEADERS) $(LIB_GFX) $(FRAMEWORKS) -o $(NAME2)
+	gcc $(SRCS_VISU) $(LIB) $(HEADERS) $(LIB_GFX) $(FRAMEWORKS) $(FLAGS) -o $(NAME2)
 
 $(LIB):
 	make -C libft/

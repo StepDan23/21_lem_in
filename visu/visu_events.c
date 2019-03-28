@@ -6,13 +6,13 @@
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 13:11:16 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/27 15:30:56 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/28 13:34:00 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/visu.h"
 
-static void		event_to_start(t_window *window, t_prop *map, t_rend *render)
+static void		event_to_start(t_prop *map, t_rend *render)
 {
 	int		i;
 
@@ -29,7 +29,7 @@ static void		event_to_start(t_window *window, t_prop *map, t_rend *render)
 	}
 }
 
-static void		event_speed(t_window *window, t_rend *render, int up)
+static void		event_speed(t_rend *render, int up)
 {
 	if (up)
 	{
@@ -60,11 +60,11 @@ void			win_events(t_window *window, t_prop *map, t_rend *render)
 			if (e.key.keysym.sym == SDLK_ESCAPE)
 				WIN_QUIT = 1;
 			else if (e.key.keysym.sym == SDLK_SPACE)
-				event_to_start(window, map, render);
+				event_to_start(map, render);
 			else if (e.key.keysym.sym == SDLK_UP)
-				event_speed(window, render, 1);
+				event_speed(render, 1);
 			else if (e.key.keysym.sym == SDLK_DOWN)
-				event_speed(window, render, 0);
+				event_speed(render, 0);
 		}
 	}
 }

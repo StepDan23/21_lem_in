@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visu_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 19:01:47 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/27 22:24:53 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/28 13:19:55 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,11 @@ t_prop			*prop_init(t_window *window, t_visual *parse)
 
 	if (!(map = (t_prop*)malloc(sizeof(t_prop))))
 		return (0);
-	ft_printf("min dest %f\n", SH_DIST);
 	SCALE_ANT = (SH_DIST * Y_RAT) / BOX_HEIGHT;
 	sc_x = (SH_DIST * X_RAT) / BOX_WIDTH;
 	SCALE_ANT = (SCALE_ANT < sc_x) ? SCALE_ANT : sc_x;
 	SCALE_ANT = (SCALE_ANT < 0.2) ? 0.2 : SCALE_ANT;
 	SCALE_ANT = (SCALE_ANT > 1.0) ? 1.0 : SCALE_ANT;
-	ft_printf("scale----- dest %f\n", SCALE_ANT);
 	MAP_NODE_C = SIZE;
 	MAP_MATRIX = MATRIX;
 	MAP_COORDS = COORD;
@@ -92,7 +90,5 @@ t_rend			*rend_init(t_prop *map, t_visual *parse)
 		T_MOVE[i].y = MAP_COORDS[POS_START][1];
 		i++;
 	}
-	ft_printf("START = %d END = %d\n", START, END);
-
 	return (render);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visu.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:39:31 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/27 23:16:41 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/28 13:43:07 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ void				ft_init_matrix(t_visual *parse);
 void				ft_init_steps(t_visual *parse);
 void				ft_li_free_char_arr(char **arr, int i);
 int					ft_show_error(void);
-void				ft_li_comment(t_visual *parse, char *line, int *j);
+void				ft_li_comment(char *line, int *j);
 void				ft_tube(t_visual *parse, char *line, int *j);
 void				ft_node(t_visual *parse, char *line, int *j, int i);
 void				ft_li_end(t_visual *parse, char *line, int *j);
@@ -159,8 +159,12 @@ void				ft_li_start(t_visual *parse, char *line, int *j);
 int					ft_place_node_in_arr(t_visual *parse, char *str);
 void				ft_go_further(t_visual *parse);
 void				ft_ant_count(t_visual *parse, char *line, int *j, int f);
-void				ft_ant_move_parse(t_visual *parse, char *line, int *j);
+void				ft_ant_move_parse(t_visual *parse, char *line);
 t_visual			*ft_parse_income_from_lem_in(void);
+
+/*
+** visu_init.c
+*/
 
 t_window			*window_init(void);
 t_prop				*prop_init(t_window *window, t_visual *parse);
@@ -170,8 +174,12 @@ int					load_files(t_window *window, t_prop *map);
 
 void				frame_render(t_window *window, t_prop *map, t_rend *render);
 
+/*
+** visu_print.c
+*/
+
 void				print_status(t_window *window, t_rend *render, int len);
-void				print_inst(t_window *window, t_rend *render);
+void				print_inst(t_window *window);
 
 void				win_events(t_window *window, t_prop *map, t_rend *render);
 

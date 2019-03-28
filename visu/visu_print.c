@@ -6,7 +6,7 @@
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 18:24:58 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/27 18:47:15 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/28 13:33:09 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,13 @@ void			print_status(t_window *window, t_rend *render, int len)
 	free(str);
 }
 
-void			print_inst(t_window *window, t_rend *render)
+void			print_inst(t_window *window)
 {
 	SDL_Rect	src;
 	SDL_Rect	dst;
-	char		*str;
-	int			num;
 
-	src = (SDL_Rect){0, 0, 840, F_STAT + 2};
-	dst = (SDL_Rect){150, 860, 850, F_STAT + 2};
+	src = (SDL_Rect){0, 0, 840, F_STAT + 5};
+	dst = (SDL_Rect){150, 860, 850, F_STAT + 5};
 	print_str(window, "Some interesting features:\
-	-Change speed- ARROWS | -Restart- SPACE", &src, &dst);
+	<Change speed> - ARROWS  <Restart> - SPACE", &src, &dst);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visual_parsing_collect_data.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 18:11:08 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/27 23:16:58 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/28 13:32:37 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void		ft_tube(t_visual *parse, char *line, int *j)
 	MATRIX[second][first] = '1';
 }
 
-void		ft_li_comment(t_visual *parse, char *line, int *j)
+void		ft_li_comment(char *line, int *j)
 {
 	if (line[1] == '#')
 	{
