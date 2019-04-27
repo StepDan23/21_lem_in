@@ -6,7 +6,7 @@
 /*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 21:02:17 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/02 17:36:30 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/23 14:44:48 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct		s_gnl{
 	int					fd;
 }					t_gnl;
 
-# define BUFF_SIZE 10
+# define BUFF_SIZE 100
 
 typedef struct		s_fmt {
 	char				flags;
