@@ -6,11 +6,11 @@
 #    By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/27 13:52:16 by mmcclure          #+#    #+#              #
-#    Updated: 2019/03/28 13:31:37 by mmcclure         ###   ########.fr        #
+#    Updated: 2019/04/28 13:01:15 by mmcclure         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME1 = lem-in
+NAME1 = lem-in-hex
 
 NAME2 = visu-hex
 

@@ -6,7 +6,7 @@
 /*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 21:34:27 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/28 16:09:11 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/28 16:51:25 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	ft_route_all_ants(t_routes *solved, int i)
 	while (++i < ROU_NUM_WAYS)
 		ROU_ANT_LEFT[i] = ROU_ANT_NUM[i];
 	write(1, "\n", 1);
-	ft_lemmin_moves(solved, 0, 1);
+	ft_lemmin_moves(solved, 0, 1, 0);
 	free(ROU_ANT_FIN);
 	free(ROU_ANT_OFFSET);
 	free(ROU_ANT_LEFT);

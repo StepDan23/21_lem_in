@@ -6,7 +6,7 @@
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 19:01:47 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/28 13:19:55 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/03/29 11:13:50 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_prop			*prop_init(t_window *window, t_visual *parse)
 	while (++i < MAP_NODE_C)
 	{
 		MAP_COORDS[i][0] = MAP_COORDS[i][0] * X_RAT - X_MIN * 0.4 * X_RAT;
-		MAP_COORDS[i][1] = MAP_COORDS[i][1] * Y_RAT - Y_MIN * 0.4 * Y_RAT;
+		MAP_COORDS[i][1] = MAP_COORDS[i][1] * Y_RAT - Y_MIN;
 	}
 	MAP_NAMES = NAME;
 	return (map);

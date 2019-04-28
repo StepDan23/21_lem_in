@@ -6,22 +6,19 @@
 /*   By: mmcclure <mmcclure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 11:09:44 by mmcclure          #+#    #+#             */
-/*   Updated: 2019/03/28 13:36:34 by mmcclure         ###   ########.fr       */
+/*   Updated: 2019/04/28 12:39:06 by mmcclure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/visu.h"
 
-static void		render_ant_pos(t_window *window, t_move pos, int frame, int fl)
+static void		render_ant_pos(t_window *window, t_move pos, int frame)
 {
 	SDL_Rect	render_area;
 	SDL_Rect	clip_area;
 	int			angle;
 
-	if (fl)
-		angle = 90;
-	else
-		angle = pos.angle - 270;
+	angle = pos.angle - 270;
 	clip_area = (SDL_Rect){0, 0, 847, 1070};
 	if (frame == 0 || frame == 2)
 		clip_area.y = 2384;
@@ -52,8 +49,8 @@ static void		calc_move(t_prop *map, t_rend *render)
 		{
 			d_x = MAP_COORDS[STATES[ST_CUR][ant_num]][0] - T_MOVE[ant_num].x;
 			d_y = MAP_COORDS[STATES[ST_CUR][ant_num]][1] - T_MOVE[ant_num].y;
-			T_MOVE[ant_num].dx = d_x / (float)FR_LIMIT * 1.2;
-			T_MOVE[ant_num].dy = d_y / (float)FR_LIMIT * 1.2;
+			T_MOVE[ant_num].dx = d_x / (float)(FR_LIMIT + 2);
+			T_MOVE[ant_num].dy = d_y / (float)(FR_LIMIT + 2);
 			T_MOVE[ant_num].angle = atan2((float)d_y, (float)d_x) * 180 / M_PI;
 		}
 		ant_num--;
@@ -66,7 +63,7 @@ static void		render_start_end(t_window *window, t_prop *map, t_rend *render)
 	int		ant_num;
 
 	ant_num = -1;
-	if (FR_CUR == (int)(0.2 * FR_LIMIT))
+	if (FR_CUR == 0)
 	{
 		ANTS_START = 0;
 		while (++ant_num < ANTS_COU)
@@ -74,20 +71,20 @@ static void		render_start_end(t_window *window, t_prop *map, t_rend *render)
 					&& T_MOVE[ant_num].y == MAP_COORDS[POS_START][1])
 				ANTS_START++;
 	}
-	if (FR_CUR == FR_LIMIT)
+	else if (FR_CUR == FR_LIMIT)
 	{
 		ANTS_END = 0;
 		while (++ant_num < ANTS_COU)
-			if (T_MOVE[ant_num].x / MAP_COORDS[POS_END][0] > 0.93
-					&& T_MOVE[ant_num].y / MAP_COORDS[POS_END][1] > 0.93)
+			if (T_MOVE[ant_num].x / MAP_COORDS[POS_END][0] >= 0.95
+					&& T_MOVE[ant_num].y / MAP_COORDS[POS_END][1] >= 0.95)
 				ANTS_END++;
 	}
 	if (ANTS_START != 0)
 		render_ant_pos(window, (t_move){MAP_COORDS[POS_START][0],
-								MAP_COORDS[POS_START][1], 0, 0, 0}, 0, 0);
+								MAP_COORDS[POS_START][1], 0, 0, 0}, 0);
 	if (ANTS_END != 0)
 		render_ant_pos(window, (t_move){MAP_COORDS[POS_END][0],
-									MAP_COORDS[POS_END][1], 0, 0, 0}, 0, 0);
+									MAP_COORDS[POS_END][1], 0, 0, 0}, 0);
 }
 
 static void		render_ants(t_window *window, t_prop *map, t_rend *render)
@@ -99,20 +96,13 @@ static void		render_ants(t_window *window, t_prop *map, t_rend *render)
 	{
 		if (FR_CUR == 0)
 			calc_move(map, render);
-		else if (FR_CUR < 0.2 * FR_LIMIT)
-		{
-			while (++ant_num < ANTS_COU)
-				if (T_MOVE[ant_num].dx != 0 || T_MOVE[ant_num].dy != 0)
-					render_ant_pos(window, T_MOVE[ant_num], 0, 1);
-		}
-		else
-			while (++ant_num < ANTS_COU)
-				if (T_MOVE[ant_num].dx != 0 || T_MOVE[ant_num].dy != 0)
-				{
-					T_MOVE[ant_num].x += T_MOVE[ant_num].dx;
-					T_MOVE[ant_num].y += T_MOVE[ant_num].dy;
-					render_ant_pos(window, T_MOVE[ant_num], FR_CUR % 32 / 8, 0);
-				}
+		while (++ant_num < ANTS_COU)
+			if (T_MOVE[ant_num].dx != 0 || T_MOVE[ant_num].dy != 0)
+			{
+				T_MOVE[ant_num].x += T_MOVE[ant_num].dx;
+				T_MOVE[ant_num].y += T_MOVE[ant_num].dy;
+				render_ant_pos(window, T_MOVE[ant_num], FR_CUR % 32 / 8);
+			}
 	}
 	render_start_end(window, map, render);
 }
@@ -126,5 +116,5 @@ void			frame_render(t_window *window, t_prop *map, t_rend *render)
 	print_inst(window);
 	render_ants(window, map, render);
 	SDL_RenderPresent(WIN_REND);
-	FR_CUR += (FR_CUR == FR_LIMIT) ? -FR_LIMIT : 1;
+	FR_CUR += (FR_CUR == FR_LIMIT + 1) ? -FR_CUR : 1;
 }

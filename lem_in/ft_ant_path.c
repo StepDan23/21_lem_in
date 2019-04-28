@@ -6,7 +6,7 @@
 /*   By: lshanaha <lshanaha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:38:55 by lshanaha          #+#    #+#             */
-/*   Updated: 2019/03/28 16:21:41 by lshanaha         ###   ########.fr       */
+/*   Updated: 2019/03/28 17:02:36 by lshanaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		ft_is_finished_all(int *start, int *end, int len)
 ** перемещаем муравья и печатаем его движение на каждом шаге
 */
 
-void	ft_lemmin_routine(t_routes *solved, int **zone, int k)
+int		ft_lemmin_routine(t_routes *solved, int **zone, int k)
 {
 	int		i;
 	int		j;
@@ -79,13 +79,14 @@ void	ft_lemmin_routine(t_routes *solved, int **zone, int k)
 	}
 	if (ROU_ANT_LEFT[k] == 0)
 		zone[k][0] = 0;
+	return (j);
 }
 
 /*
 ** k - is num of route.
 */
 
-void	ft_lemmin_moves(t_routes *solved, int k, int num_of_ant_in_tube)
+void	ft_lemmin_moves(t_routes *solved, int k, int num_of_ant_in_tube, int j)
 {
 	int	**zone;
 
@@ -94,10 +95,10 @@ void	ft_lemmin_moves(t_routes *solved, int k, int num_of_ant_in_tube)
 	{
 		if (ROU_ANT_NUM[k] != ROU_ANT_FIN[k])
 		{
-			ft_lemmin_routine(solved, zone, k);
+			j = ft_lemmin_routine(solved, zone, k);
 			if (ROU_ANT_LEFT[k] > 0)
 			{
-				(num_of_ant_in_tube != 1) ? write(1, " ", 1) : 0;
+				(j != 0 || k > 0) ? write(1, " ", 1) : 0;
 				zone[k][0] = num_of_ant_in_tube++;
 				write(1, "L", 1);
 				ft_putnbr(zone[k][0]);
