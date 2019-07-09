@@ -13,6 +13,10 @@ To run visualisation:
 ```
 ./lem-in-hex < maps/middle_map.txt | ./visu-hex
 ```
+## How its look like?
+
+<img src="demos/lem_in.gif" alt="Ants ways" width="1024px">
+
 ## What is a map?
 ```
 5           // The number of ants
@@ -43,17 +47,18 @@ L11-5 L13-6 L15-2 L10-5 L12-13 L14-15
 L13-5 L15-6 L12-5 L14-13
 L15-5 L14-5                // Last step: now everyone at the end-room (5)
 ```
-<img width="150" align="middle" src="https://i.imgur.com/Jc4fCTLm.png">
-## Prerequisites to rebiuld programs
-```
-You have to install graphics libraries as in <a href="http://lazyfoo.net/tutorials/SDL/01_hello_SDL/mac/index.php">this instructions</a> to ~/Library/Frameworks/
 
+## Prerequisites to rebiuld programs
+
+You have to install graphics libraries as in <a href="http://lazyfoo.net/tutorials/SDL/01_hello_SDL/mac/index.php"> this instructions </a> to ~/Library/Frameworks/
+
+```
 SDL2        
 SDL2_image  
 SDL2_ttf    
 ```
-```
-You have to upload .c and .h files from <a href="http://www.ferzkopp.net/wordpress/2016/01/02/sdl_gfx-sdl2_gfx/">this source</a> to ~/SDL_gfx/
 
+You have to upload .c and .h files from <a href="http://www.ferzkopp.net/wordpress/2016/01/02/sdl_gfx-sdl2_gfx/">this source</a> to ~/SDL_gfx/
+```
 SDL_gfx
 ```
